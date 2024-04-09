@@ -1,0 +1,297 @@
+// Fonts
+@import url('https://fonts.bunny.net/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import 'bootstrap/scss/bootstrap';
+
+$custom-font-size: 30px;
+$custom-mobile-font-size: 24px;
+$custom-font-weight: 400;
+
+.about_title {
+    font-size: $custom-font-size;
+    font-weight: $custom-font-weight;
+}
+
+.about_description{
+    width: 600px;
+}
+
+.about_description{
+    text-align: justify;
+    font-size: 16px;
+}
+
+.about_text{
+    margin-left: 100px;
+    margin-top: 25px;
+    font-weight: 300;
+}
+
+.more_link{
+    margin-top: 30px;
+    text-decoration: none;
+    color: black;
+    font-size: 14px;
+}
+
+.arrow{
+    padding-left: 25px;
+    font-size: 20px;
+}
+
+.headline{
+    width: 100%;
+    text-align: center;
+}
+
+.category{
+    font-size: 28px;
+    margin-top: 30px;
+}
+
+footer{
+    background: black;
+    padding: 2.059025394646534vw 10.638297872340425vw 3.4317089910775564vw;
+    display: flex;
+    flex-flow: row wrap;
+    .menu_wrap{
+        margin-left: 30%;
+    }
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+.site-link .active{
+    color: #ffffff;
+    background: linear-gradient(transparent 10%, black 10%, black 90%, transparent 90%);
+    padding-right: 1px;
+    padding-left: 2.059025394646534vw;
+    margin-left: -2.059025394646534vw;
+}
+.site-link{
+    position: relative;
+    width: auto;
+    display: inline;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+}
+
+span, p{
+    margin: 0;
+    font-size: inherit;
+}
+
+form {
+    display: block;
+    margin-top: 0em;
+}
+
+.flex-form {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+.flex-form label:not(:last-child) {
+    width: calc(50% - 30px);
+}
+
+.flex-form label {
+    display: flex;
+}
+
+.flex-form label {
+    margin-top: 4.1666666667vw;
+}
+
+label {
+    display: block;
+    position: relative;
+}
+
+.label-submit {
+    width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
+    margin-top: 3.125vw;
+}
+
+span.rect-link {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    padding: 7px 15px;
+    box-shadow: 0 0 0 1px #000 inset, 0 0 0 3px #ffffff inset;
+    transition: 0.25s;
+    font-size: 15px;
+}
+
+label > span {
+    color: #000000;
+    white-space: nowrap;
+    font-weight: 500;
+}
+
+.field-holder{
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    pointer-events: none;
+    width: 100%;
+    padding-left: 10px;
+    padding-bottom: 5px;
+    transition: all 0.15s;
+}
+
+label>input:not([type=file]):not([type=submit]) {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    border-bottom: 1px solid #707070;
+    padding-left: 10px;
+    padding-bottom: 5px;
+    font-size: .9375vw;
+}
+
+input {
+    line-height: normal;
+    border: none;
+    padding: 0;
+    background: transparent;
+    display: block;
+    width: 100%;
+    text-align: left;
+}
+
+.flex-form textarea {
+    height: 100px;
+    padding: 15px 10px 10px 10px;
+}
+
+textarea {
+    border: 1px solid #707070;
+    width: 475px;
+    resize: none;
+}
+
+.textarea-holder {
+    position: absolute;
+    top: 0;
+    left: 1px;
+    background: #ffffff;
+    transform: translate(0, -50%);
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+label{
+    cursor: default;
+}
+
+.label-submit input {
+    position: absolute;
+    z-index: -1;
+    width: 0;
+    height: 0;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0 30px;
+}
+
+.thumbex {
+    margin: 10px 10px 50px;
+    flex: 0 0 calc(50% - 20px);
+    max-width: 785px;
+    box-sizing: border-box;
+}
+
+.thumbnail {
+    overflow: hidden;
+    position: relative;
+    height: 665px;
+    opacity: 0.88;
+    backface-visibility: hidden;
+    transition: all 0.4s ease-out;
+    outline: 2px solid white;
+    outline-offset: -15px;
+    background-color: blue;
+    box-shadow: 5px 10px 40px 5px rgba(0, 0, 0, 0.5);
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        backface-visibility: hidden;
+    }
+
+    span {
+        position: absolute;
+        top: calc(50% - 20px);
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.7);
+        padding: 10px 50px;
+        text-align: center;
+        font-size: 24px;
+        color: white;
+        font-weight: 300;
+        letter-spacing: 0.2px;
+        transition: all 0.3s ease-out;
+    }
+
+    &:hover {
+        transform: scale(1.1, 1.1);
+        opacity: 1;
+
+        span {
+            opacity: 0;
+        }
+    }
+}
+
+.custom-btn {
+    background-color: black;
+    color: white;
+    font-size: 20px; /* Ваш розмір шрифту */
+    padding: 15px 25px; /* Ваші власні величини відступів */
+    width: 400px;
+    transition: background-color 0.3s; /* Анімація для плавного змінення кольору */
+}
+
+.custom-btn:hover {
+    background-color: #333; /* Колір, який ви хочете використовувати при наведенні */
+    color: white;
+}
+
+.move-right {
+    margin-left: 120px;
+}
+
+//.image-container {
+//    position: relative;
+//    display: inline-block; /* Ensure the container takes the size of the image */
+//}
+
+.overlay-text {
+    position: absolute;
+    top: 50%; /* Adjust this value to vertically center the text */
+    left: 50%; /* Adjust this value to horizontally center the text */
+    transform: translate(-50%, -50%);
+    color: white; /* Change the text color */
+    font-size: 18px; /* Adjust the font size */
+    text-align: center;
+    /* Add any other styles you need for the overlay text */
+}
+
