@@ -41,7 +41,8 @@
                                     <span>ЦІНА:</span>
                                     <b class="fs-4">{{ $product->price }}</b>
                                 </div>
-                                <basket-button></basket-button>
+
+                                <basket-button :product="{{ json_encode($product) }}"></basket-button>
 {{--                            <button class="btn">Ваша кнопка</button>--}}
 {{--                                <a href="" class="bg-black btn">--}}
 {{--                                    До кошику--}}

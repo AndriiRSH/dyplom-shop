@@ -46,7 +46,7 @@ export default {
               cart = JSON.parse(cart)
               cart.forEach(productInCart => {
                   if (productInCart.id === id){
-                      productInCart.qty = Number(productInCart.qty) + 1
+                      productInCart.qty = Number(productInCart.qty)
                       newProduct = null
                   }
               })
