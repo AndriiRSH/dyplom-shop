@@ -1,6 +1,6 @@
 <template>
 
-    <a @click.prevent="addToCart(product.id)" class="bg-black btn custom-btn">
+    <a @click.prevent="addToCart(product)" class="bg-black btn custom-btn">
         До кошику
         <img width="30" height="30" alt="Корзина" src="/images/cart.svg">
     </a>
@@ -13,12 +13,15 @@ export default {
     props: ['product'],
 
     methods: {
-        addToCart(id){
+        addToCart(product){
 
             let cart = localStorage.getItem('cart')
             let newProduct = [
                 {
-                    'id': id,
+                    'id': product.id,
+                    'preview_image': product.preview_image,
+                    'title': product.title,
+                    'price': product.price,
                     'qty': 1
                 }
             ]
@@ -28,7 +31,7 @@ export default {
             } else {
                 cart = JSON.parse(cart)
                 cart.forEach(productInCart => {
-                    if (productInCart.id === id){
+                    if (productInCart.id === product.id){
                         productInCart.qty = Number(productInCart.qty)
                         newProduct = null
                     }

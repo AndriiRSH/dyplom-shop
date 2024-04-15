@@ -3,7 +3,8 @@
 @section('content')
 
     <div class="">
-        <header class="text-center">
+{{--        <header class="text-center">--}}
+        <header class="">
             <div class="d-flex">
                 <navigation-products></navigation-products>
             </div>
@@ -39,7 +40,7 @@
                             <div class="d-flex justify-content-between align-center">
                                 <div class="d-flex flex-column">
                                     <span>ЦІНА:</span>
-                                    <b class="fs-4">{{ $product->price }}</b>
+                                    <b class="fs-4">{{ $product->price }} ₴</b>
                                 </div>
 
                                 <basket-button :product="{{ json_encode($product) }}"></basket-button>

@@ -25,14 +25,40 @@
                                 <a href="" class="fa-brands fa-telegram fa-2xl"></a>
                             </div>
                         </div>
-
                     </div>
 <!--                <a v-if="!scrolledNav" href="/" class="d-inline-block mx-auto fs-2 design">DESIGN MOSKALENKO</a>-->
 <!--                <p v-if="!scrolledNav" class="d-inline-block mx-auto fs-2 design ml-2">DESIGN MOSKALENKO</p>-->
                 <p v-if="!scrolledNav" class="d-inline-block mx-auto fs-2 design ml-2">Оберіть товари для себе</p>
-                <div>
-                    <a href="/basket"><img width="30" height="30" alt="Корзина" src="/images/cart.svg"></a>
-                    <span class="cart-price">29998 грн.</span>
+                <div @click="toggleMobileNavBasket" class="">
+<!--                    <a href="" class="">-->
+                        <img width="30" height="30" alt="Корзина" src="/images/cart.svg">
+<!--                    </a>-->
+<!--                    <span class="cart-price">29998 грн.</span>-->
+                </div>
+                <div class="hidden_menu-basket" :class="{ 'menu-active-basket': mobileNavBasket }">
+                    <div class="menu_wrapper-basket" style="transform: matrix(1, 0, 0, 1, 0, 0); position: relative;">
+                        <div class="cart">
+                            <i @click="toggleMobileNavBasket" class="fa-light fa-x"></i>
+                            <div class="product mt-3">
+                                <img src="/images/withtext.jpg" alt="фото товару" class="img-fluid">
+                                <div class="name">Назва товару</div>
+                                <div class="price">10 $</div>
+                                <i class="fa-regular fa-circle-xmark destroy-basket-item"></i>
+                            </div>
+                            <div class="product mt-3">
+                                <img src="/images/withtext.jpg" alt="фото товару" class="img-fluid">
+                                <div class="name">Назва товару</div>
+                                <div class="price">10 $</div>
+                                <i class="fa-regular fa-circle-xmark destroy-basket-item"></i>
+                            </div>
+                            <cart></cart>
+                            <div style="display: flex; align-items: center; margin-top: 20px;">
+                                <h3 style="margin-right: 10px;">До сплати:</h3>
+                                <h4 style="margin-left: 245px;">10$</h4>
+                            </div>
+                            <button style="background-color: white; color: black; border: 1px solid black; padding: 10px 20px; width: 300px; margin-left: 70px; border-radius: 10px;">Оформити</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -40,13 +66,17 @@
 </template>
 
 <script>
+import Cart from "./Cart.vue";
+
 export default {
     name: "NavigationProducts",
+    components: { Cart },
     data(){
         return {
             scrolledNav: null,
             mobile: true,
             mobileNav: null,
+            mobileNavBasket: null,
             windowWidth: null,
             isScrolled: false,
         };
@@ -64,6 +94,10 @@ export default {
     methods: {
         toggleMobileNav(){
             this.mobileNav = !this.mobileNav;
+        },
+
+        toggleMobileNavBasket(){
+            this.mobileNavBasket = !this.mobileNavBasket;
         },
 
         updateScroll(){
@@ -87,6 +121,425 @@ export default {
     },
 };
 </script>
+
+<style lang="scss" scoped>
+
+.destroy-basket-item{
+    margin-left: 100px;
+}
+
+.cart {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: black;
+    color: #fff;
+    padding: 10px;
+    box-sizing: border-box;
+    z-index: 1000;
+}
+.cart .close {
+    float: right;
+    cursor: pointer;
+}
+.cart .product {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+.cart .product img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+.cart .product .name {
+    font-weight: bold;
+}
+.cart .product .price {
+    margin-left: 80px;
+    font-size: 20px;
+}
+
+.hidden_menu {
+    transform: matrix(1, 0, 0, 1, 0, 0);
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    padding: 0 0 0 7.549759780370624vw;
+    background: #fff;
+    height: 100%;
+    //transform: translate(-105%,0);
+    z-index: 40;
+}
+
+.menu_wrapper {
+    transform: matrix(1, 0, 0, 1, 0, 0);
+    display: flex;
+    flex-flow: column nowrap;
+    background: #000000;
+    height: 100%;
+    padding: 7.25vh 2.059025394646534vw 0 3.4317089910775564vw;
+    //transform: translate(-150%, 0);
+    align-items: baseline;
+    width: 400px;
+}
+
+header{
+    background-color: rgba(0, 0, 0, 0);
+    z-index: 99;
+    width: 100%;
+    position: fixed;
+    transition: .5s ease all;
+    color: #fff;
+
+
+    .icon-active-all{
+        .burger{
+            .top, .center, .bottom {
+                //transition: all 0.5s ease; /* Додайте перехід для всіх властивостей з тривалістю 0.5 секунд та ефектом згладжування */
+                background: black;
+            }
+        }
+        .phone{
+            color: black;
+        }
+        .language{
+            button, a {
+                color: black;
+            }
+        }
+    }
+
+    nav{
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 12px 0;
+        transition: .5s ease all;
+        width: 90%;
+        margin: 0 auto;
+
+        ul,
+        .link{
+            font-weight: 500;
+            color: #fff;
+            list-style: none;
+            text-decoration: none;
+        }
+
+        li{
+            text-transform: uppercase;
+            padding: 16px;
+            margin-left: 16px;
+        }
+
+        .link{
+            font-size: 21px;
+            transition: .5s ease all;
+            padding-bottom: 4px;
+            border-bottom: 1px solid transparent;
+
+            &:hover{
+                color: #00afea;
+                border-color: #00afea;
+                cursor: pointer;
+            }
+        }
+        .branding{
+            display: flex;
+            align-items: center;
+        }
+
+        .navigation{
+            display: flex;
+            align-items: center;
+            flex: 1;
+            justify-content: flex-end;
+        }
+
+        .icon{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: absolute;
+            right: 0;
+            //top: 0;
+            margin-top: 25px;
+            left: -30px;
+            height: 100%;
+
+            .profile{
+                padding-right: 25px;
+            }
+
+            i{
+                cursor: pointer;
+                font-size: 35px;
+                transition: 0.8s ease all;
+                //padding-right: 25px;
+            }
+        }
+        .icon-active{
+            .top, .center, .bottom {
+                transition: all 0.5s ease; /* Додайте перехід для всіх властивостей з тривалістю 0.5 секунд та ефектом згладжування */
+                background: black;
+            }
+            .top{
+                top: 50%;
+                transform: matrix(0.96592, 0.25881, -0.25881, 0.96592, 0, 0);
+            }
+            .center{
+                left: 20%;
+                opacity: 0;
+            }
+
+            .bottom{
+                top: 50%;
+                transform: matrix(0.96592, -0.25881, 0.25881, 0.96592, 0, 0);
+            }
+            //content: '';
+            //position: absolute;
+            //top: -50%;
+            //bottom: -50%;
+            //left: -25%;
+            //right: -25%;
+        }
+
+        .dropdown-nav{
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            width: 100%;
+            max-width: 530px;
+            height: 100%;
+            background-color: #fff;
+            top: 0;
+            left: 0;
+
+            li{
+                margin-left: 250px;
+                margin-top: 20px;
+                .link{
+                    color: #000;
+                    font-size: 24px;
+                }
+            }
+        }
+
+        .mobile-nav-enter-active,
+        .mobile-nav-leave-active{
+            transition: 1s ease all;
+        }
+
+        .mobile-nav-enter-from,
+        .mobile-nav-leave-to{
+            transform: translateX(-250px);
+        }
+
+        .mobile-nav-enter-to{
+            transform: translateX(150px);
+        }
+
+    }
+}
+
+.icon-active-all{
+    color: black;
+}
+
+.scrolled-nav{
+    //background-color: #000;
+    //box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+    nav{
+        padding: 8px 0;
+
+        .branding{
+
+        }
+    }
+}
+
+.burger {
+    width: 4.118050789293068vw;
+    height: 1.5099519560741248vw;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    min-width: 30px;
+    min-height: 20px;
+    cursor: pointer;
+    z-index: 50;
+    max-width: 60px;
+
+}
+
+.burger div.top {
+    transition: all 0.5s ease; /* Додайте перехід для всіх властивостей з тривалістю 0.5 секунд та ефектом згладжування */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #fff;
+    //background: black;
+    transform: translateY(-1px);
+}
+
+.burger div.center {
+    transition: all 0.5s ease; /* Додайте перехід для всіх властивостей з тривалістю 0.5 секунд та ефектом згладжування */
+    position: absolute;
+    left: 0;
+    display: block;
+    width: 60%;
+    height: 2px;
+    background: #fff;
+    //background: black;
+    top: 50%;
+    //top: calc(50% - 1px);
+    z-index: 50;
+}
+
+.burger div.bottom {
+    transition: all 0.5s ease; /* Додайте перехід для всіх властивостей з тривалістю 0.5 секунд та ефектом згладжування */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #fff;
+    //background: black;
+    transform: translateY(1px);
+}
+
+.burger .icon-active{
+    //content: '';
+    //position: absolute;
+    //top: -50%;
+    //bottom: -50%;
+    //left: -25%;
+    //right: -25%;
+}
+
+.phone{
+    color: #ffffff;
+    margin-left: auto;
+    margin-right: 15px;
+    position: relative;
+    z-index: 150;
+    letter-spacing: 0.09285714285714286em;
+}
+
+.language{
+    position: relative;
+}
+
+.language button {
+    color: #ffffff;
+    text-transform: uppercase;
+    opacity: 0.8;
+    position: relative;
+    font-weight: 400;
+}
+
+.transparent-header .language ul {
+    background: rgba(255,255,255,0);
+}
+
+.language ul {
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: top center;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #ffffff;
+}
+
+.language button {
+    color: #ffffff;
+    text-transform: uppercase;
+    opacity: 0.8;
+    position: relative;
+    font-weight: 400;
+}
+
+header ul, footer ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+button {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+}
+
+.hidden_menu {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    padding: 0 0 0 7.549759780370624vw;
+    background: #fff;
+    height: 100%;
+    transform: translateX(-105%);
+    transition: transform 0.5s ease; /* Add a transition for a smooth effect */
+    z-index: 40;
+}
+
+.menu-active {
+    transform: translateX(0);
+}
+
+.menu_wrapper {
+    display: flex;
+    flex-flow: column nowrap;
+    background: #000000;
+    height: 100%;
+    padding: 7.25vh 2.059025394646534vw 0 3.4317089910775564vw;
+    align-items: baseline;
+    width: 400px;
+}
+
+.hidden_menu-basket {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    padding: 0 0 0 7.549759780370624vw;
+    //background: #fff;
+    height: 100%;
+    //transform: translateX(300%);
+    transform: translateX(100vw);
+    transition: transform 0.5s ease; /* Add a transition for a smooth effect */
+    z-index: 40;
+}
+
+.menu-active-basket {
+    transform: translateX(62vw);
+}
+
+.menu_wrapper-basket {
+    display: flex;
+    flex-flow: column nowrap;
+    background: #000000;
+    height: 100%;
+    padding: 7.25vh 2.059025394646534vw 0 3.4317089910775564vw;
+    align-items: baseline;
+    width: 600px;
+}
+
+
+</style>
 
 <!--<style lang="scss" scoped>-->
 
@@ -452,354 +905,4 @@ export default {
 
 
 <!--</style>-->
-<style lang="scss" scoped>
 
-.hidden_menu {
-    transform: matrix(1, 0, 0, 1, 0, 0);
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    padding: 0 0 0 7.549759780370624vw;
-    background: #fff;
-    height: 100%;
-    //transform: translate(-105%,0);
-    z-index: 40;
-}
-
-.menu_wrapper {
-    transform: matrix(1, 0, 0, 1, 0, 0);
-    display: flex;
-    flex-flow: column nowrap;
-    background: #000000;
-    height: 100%;
-    padding: 7.25vh 2.059025394646534vw 0 3.4317089910775564vw;
-    //transform: translate(-150%, 0);
-    align-items: baseline;
-    width: 400px;
-}
-
-header{
-    background-color: rgba(0, 0, 0, 0);
-    z-index: 99;
-    width: 100%;
-    position: fixed;
-    transition: .5s ease all;
-    color: #fff;
-
-    .icon-active-all{
-        .burger{
-            .top, .center, .bottom {
-                //transition: all 0.5s ease; /* Додайте перехід для всіх властивостей з тривалістю 0.5 секунд та ефектом згладжування */
-                background: black;
-            }
-        }
-        .phone{
-            color: black;
-        }
-        .language{
-            button, a {
-                color: black;
-            }
-        }
-    }
-
-    nav{
-        position: relative;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 12px 0;
-        transition: .5s ease all;
-        width: 90%;
-        margin: 0 auto;
-
-        ul,
-        .link{
-            font-weight: 500;
-            color: #fff;
-            list-style: none;
-            text-decoration: none;
-        }
-
-        li{
-            text-transform: uppercase;
-            padding: 16px;
-            margin-left: 16px;
-        }
-
-        .link{
-            font-size: 21px;
-            transition: .5s ease all;
-            padding-bottom: 4px;
-            border-bottom: 1px solid transparent;
-
-            &:hover{
-                color: #00afea;
-                border-color: #00afea;
-                cursor: pointer;
-            }
-        }
-        .branding{
-            display: flex;
-            align-items: center;
-        }
-
-        .navigation{
-            display: flex;
-            align-items: center;
-            flex: 1;
-            justify-content: flex-end;
-        }
-
-        .icon{
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: absolute;
-            right: 0;
-            //top: 0;
-            margin-top: 25px;
-            left: -30px;
-            height: 100%;
-
-            .profile{
-                padding-right: 25px;
-            }
-
-            i{
-                cursor: pointer;
-                font-size: 35px;
-                transition: 0.8s ease all;
-                //padding-right: 25px;
-            }
-        }
-        .icon-active{
-            .top, .center, .bottom {
-                transition: all 0.5s ease; /* Додайте перехід для всіх властивостей з тривалістю 0.5 секунд та ефектом згладжування */
-                background: black;
-            }
-            .top{
-                top: 50%;
-                transform: matrix(0.96592, 0.25881, -0.25881, 0.96592, 0, 0);
-            }
-            .center{
-                left: 20%;
-                opacity: 0;
-            }
-
-            .bottom{
-                top: 50%;
-                transform: matrix(0.96592, -0.25881, 0.25881, 0.96592, 0, 0);
-            }
-            //content: '';
-            //position: absolute;
-            //top: -50%;
-            //bottom: -50%;
-            //left: -25%;
-            //right: -25%;
-        }
-
-        .dropdown-nav{
-            display: flex;
-            flex-direction: column;
-            position: fixed;
-            width: 100%;
-            max-width: 530px;
-            height: 100%;
-            background-color: #fff;
-            top: 0;
-            left: 0;
-
-            li{
-                margin-left: 250px;
-                margin-top: 20px;
-                .link{
-                    color: #000;
-                    font-size: 24px;
-                }
-            }
-        }
-
-        .mobile-nav-enter-active,
-        .mobile-nav-leave-active{
-            transition: 1s ease all;
-        }
-
-        .mobile-nav-enter-from,
-        .mobile-nav-leave-to{
-            transform: translateX(-250px);
-        }
-
-        .mobile-nav-enter-to{
-            transform: translateX(150px);
-        }
-
-    }
-}
-
-.icon-active-all{
-    color: black;
-}
-
-.scrolled-nav{
-    //background-color: #000;
-    //box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-
-    nav{
-        padding: 8px 0;
-
-        .branding{
-
-        }
-    }
-}
-
-.burger {
-    width: 4.118050789293068vw;
-    height: 1.5099519560741248vw;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    position: relative;
-    min-width: 30px;
-    min-height: 20px;
-    cursor: pointer;
-    z-index: 50;
-    max-width: 60px;
-
-}
-
-.burger div.top {
-    transition: all 0.5s ease; /* Додайте перехід для всіх властивостей з тривалістю 0.5 секунд та ефектом згладжування */
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: #fff;
-    //background: black;
-    transform: translateY(-1px);
-}
-
-.burger div.center {
-    transition: all 0.5s ease; /* Додайте перехід для всіх властивостей з тривалістю 0.5 секунд та ефектом згладжування */
-    position: absolute;
-    left: 0;
-    display: block;
-    width: 60%;
-    height: 2px;
-    background: #fff;
-    //background: black;
-    top: 50%;
-    //top: calc(50% - 1px);
-    z-index: 50;
-}
-
-.burger div.bottom {
-    transition: all 0.5s ease; /* Додайте перехід для всіх властивостей з тривалістю 0.5 секунд та ефектом згладжування */
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: #fff;
-    //background: black;
-    transform: translateY(1px);
-}
-
-.burger .icon-active{
-    //content: '';
-    //position: absolute;
-    //top: -50%;
-    //bottom: -50%;
-    //left: -25%;
-    //right: -25%;
-}
-
-.phone{
-    color: #ffffff;
-    margin-left: auto;
-    margin-right: 15px;
-    position: relative;
-    z-index: 150;
-    letter-spacing: 0.09285714285714286em;
-}
-
-.language{
-    position: relative;
-}
-
-.language button {
-    color: #ffffff;
-    text-transform: uppercase;
-    opacity: 0.8;
-    position: relative;
-    font-weight: 400;
-}
-
-.transparent-header .language ul {
-    background: rgba(255,255,255,0);
-}
-
-.language ul {
-    opacity: 0;
-    transform: scaleY(0);
-    transform-origin: top center;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: #ffffff;
-}
-
-.language button {
-    color: #ffffff;
-    text-transform: uppercase;
-    opacity: 0.8;
-    position: relative;
-    font-weight: 400;
-}
-
-header ul, footer ul {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-}
-
-button {
-    background: transparent;
-    border: none;
-    border-radius: 0;
-    padding: 0;
-}
-
-.hidden_menu {
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    padding: 0 0 0 7.549759780370624vw;
-    background: #fff;
-    height: 100%;
-    transform: translateX(-105%);
-    transition: transform 0.5s ease; /* Add a transition for a smooth effect */
-    z-index: 40;
-}
-
-.menu-active {
-    transform: translateX(0);
-}
-
-.menu_wrapper {
-    display: flex;
-    flex-flow: column nowrap;
-    background: #000000;
-    height: 100%;
-    padding: 7.25vh 2.059025394646534vw 0 3.4317089910775564vw;
-    align-items: baseline;
-    width: 400px;
-}
-
-
-</style>

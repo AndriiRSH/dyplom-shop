@@ -3,14 +3,14 @@
         <div class="row" style="margin-top: 110px;">
 
             <div class="col-md-6" style="padding-right: 50px;">
-                <img src="/images/withtext.jpg" alt="Image" class="img-fluid">
+                <img :src="'/storage/' + product.preview_image" alt="фото товару" class="img-fluid">
             </div>
 
             <div class="col-md-6" style="padding-left: 50px;">
                 <h2 style="font-size: 50px">{{ product.title }}</h2>
                 <p style="padding-top: 50px; font-size: 30px">{{ product.description }}</p>
                 <p class="" style="font-size: 35px; padding-left: 130px; padding-top: 200px">{{ product.price }} грн.</p>
-                <a @click.prevent="addToCart(product.id)" class="btn custom-btn">
+                <a @click.prevent="addToCart(product)" class="btn custom-btn">
                     До кошику
                     <img width="30" height="30" alt="Корзина" src="/images/cart.svg">
                 </a>
@@ -30,22 +30,24 @@ export default {
     props: ['product'],
 
     methods: {
-      addToCart(id){
+      addToCart(product){
 
           let cart = localStorage.getItem('cart')
           let newProduct = [
               {
-                  'id': id,
+                  'id': product.id,
+                  'preview_image': product.preview_image,
+                  'title': product.title,
+                  'price': product.price,
                   'qty': 1
               }
           ]
           if (!cart) {
-
               localStorage.setItem('cart', JSON.stringify(newProduct));
           } else {
               cart = JSON.parse(cart)
               cart.forEach(productInCart => {
-                  if (productInCart.id === id){
+                  if (productInCart.id === product.id){
                       productInCart.qty = Number(productInCart.qty)
                       newProduct = null
                   }

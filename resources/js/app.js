@@ -8,6 +8,7 @@ import ButtonConnect from "./components/ButtonConnect.vue";
 import NavigationProducts from "./components/NavigationProducts.vue";
 import Product from "./components/Product.vue";
 import BasketButton from "./components/BasketButton.vue";
+import Cart from "./components/Cart.vue";
 const app = createApp({});
 
 // Vue.use(VueRouter);
