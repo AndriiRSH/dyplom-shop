@@ -38,7 +38,7 @@
                         <div class="card-body">
                             <h5 class="card-title text-center fs-2">{{ $product->title }}</h5>
                             <div class="d-flex justify-content-between align-center">
-                                <div class="d-flex flex-column">
+                                <div class="d-flex flex-column ">
                                     <span>ЦІНА:</span>
                                     <b class="fs-4">{{ $product->price }} ₴</b>
                                 </div>
@@ -52,11 +52,13 @@
                             </div>
                         </div>
                 </div>
-
-
                     {{--                    </router-link>--}}
                 </a>
             @endforeach
+            <div class="d-flex justify-content-center">
+                {{ $products->links() }}
+            </div>
+
     </div>
 </div>
 

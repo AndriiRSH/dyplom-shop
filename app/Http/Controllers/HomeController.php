@@ -33,15 +33,16 @@ class HomeController extends Controller
     {
 //        $products = $category->products()->get();
         $categories = Category::all();
-        $products = $category->products()->paginate(10);
+        $products = $category->products()->paginate(6);
         return view('category.products', compact('products', 'categories'));
     }
 
     public function product($postId)
     {
         $product = Product::findOrFail($postId);
+        $randomProduct = Product::inRandomOrder()->limit(4)->get();
         $categories = Category::all();
-        return view('post.show', compact('product','categories'));
+        return view('post.show', compact('product','categories', 'randomProduct'));
     }
 
 }

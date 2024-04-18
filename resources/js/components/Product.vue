@@ -8,15 +8,15 @@
 
             <div class="col-md-6" style="padding-left: 50px;">
                 <h2 style="font-size: 50px">{{ product.title }}</h2>
-                <p style="padding-top: 50px; font-size: 30px">{{ product.description }}</p>
-                <p class="" style="font-size: 35px; padding-left: 130px; padding-top: 200px">{{ product.price }} грн.</p>
+                <p style="padding-top: 50px; font-size: 20px; width: 350px">{{ product.description }}</p>
+                <p class="" style="font-size: 35px; padding-left: 130px; padding-top: 130px">{{ product.price }} грн.</p>
                 <a @click.prevent="addToCart(product)" class="btn custom-btn">
                     До кошику
                     <img width="30" height="30" alt="Корзина" src="/images/cart.svg">
                 </a>
             </div>
 
-            <div class="col-md-6" style="padding-top: 120px">
+            <div class="col-md-6" style="padding-top: 120px; margin-left: auto; font-size: 18px; text-align: justify;">
                 <p>{{ product.content }}</p>
             </div>
 
@@ -56,6 +56,7 @@ export default {
 
               localStorage.setItem('cart', JSON.stringify(cart))
           }
+
       },
     },
 

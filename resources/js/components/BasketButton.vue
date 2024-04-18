@@ -40,6 +40,7 @@ export default {
 
                 localStorage.setItem('cart', JSON.stringify(cart))
             }
+
         },
     },
 }

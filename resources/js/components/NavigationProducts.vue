@@ -39,22 +39,10 @@
                     <div class="menu_wrapper-basket" style="transform: matrix(1, 0, 0, 1, 0, 0); position: relative;">
                         <div class="cart">
                             <i @click="toggleMobileNavBasket" class="fa-light fa-x"></i>
-                            <div class="product mt-3">
-                                <img src="/images/withtext.jpg" alt="фото товару" class="img-fluid">
-                                <div class="name">Назва товару</div>
-                                <div class="price">10 $</div>
-                                <i class="fa-regular fa-circle-xmark destroy-basket-item"></i>
-                            </div>
-                            <div class="product mt-3">
-                                <img src="/images/withtext.jpg" alt="фото товару" class="img-fluid">
-                                <div class="name">Назва товару</div>
-                                <div class="price">10 $</div>
-                                <i class="fa-regular fa-circle-xmark destroy-basket-item"></i>
-                            </div>
                             <cart></cart>
                             <div style="display: flex; align-items: center; margin-top: 20px;">
                                 <h3 style="margin-right: 10px;">До сплати:</h3>
-                                <h4 style="margin-left: 245px;">10$</h4>
+                                <h4 style="margin-left: 245px;">{{ totalCost }}₴</h4>
                             </div>
                             <button style="background-color: white; color: black; border: 1px solid black; padding: 10px 20px; width: 300px; margin-left: 70px; border-radius: 10px;">Оформити</button>
                         </div>
@@ -71,6 +59,7 @@ import Cart from "./Cart.vue";
 export default {
     name: "NavigationProducts",
     components: { Cart },
+
     data(){
         return {
             scrolledNav: null,
@@ -79,7 +68,13 @@ export default {
             mobileNavBasket: null,
             windowWidth: null,
             isScrolled: false,
+            products: [],
         };
+    },
+    computed: {
+        totalCost() {
+            return this.products.reduce((total, item) => total + item.price, 0);
+        }
     },
     created() {
       window.addEventListener("resize", this.checkScreen);
@@ -87,11 +82,16 @@ export default {
     },
     mounted() {
         window.addEventListener("scroll", this.updateScroll);
+        this.getCartProducts();
     },
     destroyed() {
         window.removeEventListener('scroll', this.handleScroll);
     },
     methods: {
+        getCartProducts(){
+            this.products = JSON.parse(localStorage.getItem('cart'))
+        },
+
         toggleMobileNav(){
             this.mobileNav = !this.mobileNav;
         },

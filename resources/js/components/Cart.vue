@@ -3,7 +3,7 @@
         <img :src="'/storage/' + product.preview_image" alt="фото товару" class="img-fluid">
         <div class="name">{{ product.title }}</div>
         <div class="price">{{ product.price }}₴</div>
-        <i class="fa-regular fa-circle-xmark destroy-basket-item"></i>
+        <i @click.prevent="removeProduct(product.id)" class="fa-regular fa-circle-xmark destroy-basket-item"></i>
     </div>
 </template>
 
@@ -24,8 +24,17 @@ export default {
             this.mobileNavBasket = !this.mobileNavBasket;
         },
         getCartProducts(){
-            this.products = JSON.parse(localStorage.getItem('cart'))
+            this.products = JSON.parse(localStorage.getItem('cart'));
             console.log(this.products);
+        },
+        removeProduct(id){
+            this.products = this.products.filter( product => {
+                return product.id !== id
+            })
+            this.updateCart()
+        },
+        updateCart(){
+            localStorage.setItem('cart', JSON.stringify(this.products))
         }
     }
 }
@@ -67,7 +76,7 @@ i{
 }
 
 .name{
-    font-size: 22px;
+    font-size: 18px;
     width: 100px;
 }
 </style>

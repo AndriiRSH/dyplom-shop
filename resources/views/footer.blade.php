@@ -3,7 +3,7 @@
             <address>
                 <a href="#">Чернівці, Хотинська</a>
             </address>
-            <a href="#">test@gmail.com</a> <br>
+            <a href="#">design.moskalenko@gmail.com</a> <br>
             <a href="">+380996927001</a> <br>
             <a href="">+380996927002</a> <br>
             <a href="">+380996927003</a>
