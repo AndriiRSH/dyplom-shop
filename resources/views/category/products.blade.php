@@ -55,10 +55,47 @@
                     {{--                    </router-link>--}}
                 </a>
             @endforeach
-            <div class="d-flex justify-content-center">
-                {{ $products->links() }}
+{{--            --}}
+            <div class="d-flex justify-content-center my-4">
+                <ul class="pagination">
+                    <!-- Previous Page Link -->
+                    @if ($products->onFirstPage())
+                        <li class="page-item disabled">
+                            <span class="page-link">&laquo; Попередня</span>
+                        </li>
+                    @else
+                        <li class="page-item">
+                            <a href="{{ $products->previousPageUrl() }}" class="page-link" rel="prev">&laquo; Попередня</a>
+                        </li>
+                    @endif
+
+                    <!-- Pagination Elements -->
+                    @foreach ($products->getUrlRange(1, $products->lastPage()) as $page => $url)
+                        @if ($page == $products->currentPage())
+                            <li class="page-item active">
+                                <span class="page-link">{{ $page }}</span>
+                            </li>
+                        @else
+                            <li class="page-item">
+                                <a href="{{ $url }}" class="page-link">{{ $page }}</a>
+                            </li>
+                        @endif
+                    @endforeach
+
+                    <!-- Next Page Link -->
+                    @if ($products->hasMorePages())
+                        <li class="page-item">
+                            <a href="{{ $products->nextPageUrl() }}" class="page-link" rel="next">Наступна &raquo;</a>
+                        </li>
+                    @else
+                        <li class="page-item disabled">
+                            <span class="page-link">Наступна &raquo;</span>
+                        </li>
+                    @endif
+                </ul>
             </div>
 
+            {{----}}
     </div>
 </div>
 
