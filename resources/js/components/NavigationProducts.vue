@@ -44,7 +44,12 @@
                                 <h3 style="margin-right: 10px;">До сплати:</h3>
                                 <h4 style="margin-left: 245px;">{{ totalCost }}₴</h4>
                             </div>
-                            <button style="background-color: white; color: black; border: 1px solid black; padding: 10px 20px; width: 300px; margin-left: 70px; border-radius: 10px;">Оформити</button>
+<!--                            <button style="background-color: white; color: black; border: 1px solid black; padding: 10px 20px; width: 300px; margin-left: 70px; border-radius: 10px;">Оформити</button>-->
+<!--                            <a href="/checkout" style="background-color: white; color: black; border: 1px solid black; padding: 10px 20px; width: 300px; margin-left: 70px; border-radius: 10px; text-decoration: none; display: inline-block; text-align: center">Оформити</a>-->
+                            <form action="/session" method="POST">
+                                <input type="hidden" name="_token" v-bind:value="csrf_token">
+                                <button @click="saveData" type="submit" id="checkout-live-button" style="background-color: white; color: black; border: 1px solid black; padding: 10px 20px; width: 300px; margin-left: 70px; border-radius: 10px; text-decoration: none; display: inline-block; text-align: center">Оформити</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -55,6 +60,7 @@
 
 <script>
 import Cart from "./Cart.vue";
+import axios from 'axios';
 
 export default {
     name: "NavigationProducts",
@@ -69,18 +75,25 @@ export default {
             windowWidth: null,
             isScrolled: false,
             products: [],
+            csrf_token: null,
+            myItem: '',
         };
     },
     computed: {
         totalCost() {
+            this.getCartProducts();
             return this.products.reduce((total, item) => total + item.price, 0);
         }
     },
     created() {
+      this.fetchCsrfToken();
       window.addEventListener("resize", this.checkScreen);
       this.checkScreen();
     },
     mounted() {
+        this.myItem = this.totalCost;
+        console.log(this.totalCost);
+        this.setCookie('cookieName', this.myItem, 7);
         window.addEventListener("scroll", this.updateScroll);
         this.getCartProducts();
     },
@@ -88,6 +101,32 @@ export default {
         window.removeEventListener('scroll', this.handleScroll);
     },
     methods: {
+        setCookie(name,value,days) {
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days*24*60*60*1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+        },
+
+        saveData() {
+            axios.post('/session', {
+                data: this.products
+            })
+                .then(response => {
+                    console.log(response.data);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        },
+
+        fetchCsrfToken() {
+            this.csrf_token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        },
+
         getCartProducts(){
             this.products = JSON.parse(localStorage.getItem('cart'))
         },

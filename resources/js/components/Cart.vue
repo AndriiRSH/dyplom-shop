@@ -11,15 +11,27 @@
 export default {
     name: "Cart",
     mounted() {
-      this.getCartProducts()
+      this.getCartProducts();
+      // this.myItem = localStorage.getItem('cart');
+      // this.setCookie('cookieName', this.myItem, 7);
     },
     data(){
         return {
             mobileNavBasket: null,
             products: [],
+            // myItem: '',
         };
     },
     methods:{
+        // setCookie(name,value,days) {
+        //     var expires = "";
+        //     if (days) {
+        //         var date = new Date();
+        //         date.setTime(date.getTime() + (days*24*60*60*1000));
+        //         expires = "; expires=" + date.toUTCString();
+        //     }
+        //     document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+        // },
         toggleMobileNavBasket(){
             this.mobileNavBasket = !this.mobileNavBasket;
         },

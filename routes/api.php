@@ -21,3 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('');
 
 Route::get('/posts/{post}', [\App\Http\Controllers\Api\OrderController::class, 'index']);
+Route::post('/session', [\App\Http\Controllers\HomeController::class, 'saveData']);
