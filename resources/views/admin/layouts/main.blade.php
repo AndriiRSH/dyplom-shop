@@ -37,10 +37,12 @@
 
             <!-- Messages Dropdown Menu -->
             <li class="nav-item dropdown">
-                <a class="nav-link" data-toggle="dropdown" href="#">
-                    <i class="far fa-comments"></i>
-                    <span class="badge badge-danger navbar-badge">3</span>
-                </a>
+                <button style="font-size: 14px; padding: 5px 20px; border-radius: 5px; background-color: #4CAF50; color: white; border: none;">Вихід</button>
+
+                {{--                <a class="nav-link" data-toggle="dropdown" href="#">--}}
+{{--                    <i class="far fa-comments"></i>--}}
+{{--                    <span class="badge badge-danger navbar-badge">3</span>--}}
+{{--                </a>--}}
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                     <a href="#" class="dropdown-item">
                         <!-- Message Start -->
@@ -94,32 +96,32 @@
                 </div>
             </li>
             <!-- Notifications Dropdown Menu -->
-            <li class="nav-item dropdown">
-                <a class="nav-link" data-toggle="dropdown" href="#">
-                    <i class="far fa-bell"></i>
-                    <span class="badge badge-warning navbar-badge">15</span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                    <span class="dropdown-item dropdown-header">15 Notifications</span>
-                    <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item">
-                        <i class="fas fa-envelope mr-2"></i> 4 new messages
-                        <span class="float-right text-muted text-sm">3 mins</span>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item">
-                        <i class="fas fa-users mr-2"></i> 8 friend requests
-                        <span class="float-right text-muted text-sm">12 hours</span>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item">
-                        <i class="fas fa-file mr-2"></i> 3 new reports
-                        <span class="float-right text-muted text-sm">2 days</span>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-                </div>
-            </li>
+{{--            <li class="nav-item dropdown">--}}
+{{--                <a class="nav-link" data-toggle="dropdown" href="#">--}}
+{{--                    <i class="far fa-bell"></i>--}}
+{{--                    <span class="badge badge-warning navbar-badge">15</span>--}}
+{{--                </a>--}}
+{{--                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">--}}
+{{--                    <span class="dropdown-item dropdown-header">15 Notifications</span>--}}
+{{--                    <div class="dropdown-divider"></div>--}}
+{{--                    <a href="#" class="dropdown-item">--}}
+{{--                        <i class="fas fa-envelope mr-2"></i> 4 new messages--}}
+{{--                        <span class="float-right text-muted text-sm">3 mins</span>--}}
+{{--                    </a>--}}
+{{--                    <div class="dropdown-divider"></div>--}}
+{{--                    <a href="#" class="dropdown-item">--}}
+{{--                        <i class="fas fa-users mr-2"></i> 8 friend requests--}}
+{{--                        <span class="float-right text-muted text-sm">12 hours</span>--}}
+{{--                    </a>--}}
+{{--                    <div class="dropdown-divider"></div>--}}
+{{--                    <a href="#" class="dropdown-item">--}}
+{{--                        <i class="fas fa-file mr-2"></i> 3 new reports--}}
+{{--                        <span class="float-right text-muted text-sm">2 days</span>--}}
+{{--                    </a>--}}
+{{--                    <div class="dropdown-divider"></div>--}}
+{{--                    <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>--}}
+{{--                </div>--}}
+{{--            </li>--}}
         </ul>
     </nav>
     <!-- /.navbar -->
@@ -139,9 +141,10 @@
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
                     <li class="nav-item">
-                        <a href="pages/gallery.html" class="nav-link">
+                        <a href="" class="nav-link">
+{{--                        <a href="{{ route('order.index') }}" class="nav-link">--}}
                             <i class="nav-icon fas fa-shopping-bag"></i>
-                            <p>Закази</p>
+                            <p>Замовлення</p>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -157,25 +160,25 @@
                             <p>Категорії</p>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="" class="nav-link">
+{{--                    <li class="nav-item">--}}
+{{--                        <a href="" class="nav-link">--}}
 {{--                        <a href="{{ route('tag.index') }}" class="nav-link">--}}
-                            <i class="nav-icon fas fa-tags"></i>
-                            <p>Тегі</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('color.index') }}" class="nav-link">
-                            <i class="nav-icon fas fa-palette"></i>
-                            <p>Кольори</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('user.index') }}" class="nav-link">
-                            <i class="nav-icon fas fa-users"></i>
-                            <p>Користувачі</p>
-                        </a>
-                    </li>
+{{--                            <i class="nav-icon fas fa-tags"></i>--}}
+{{--                            <p>Тегі</p>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                    <li class="nav-item">--}}
+{{--                        <a href="{{ route('color.index') }}" class="nav-link">--}}
+{{--                            <i class="nav-icon fas fa-palette"></i>--}}
+{{--                            <p>Кольори</p>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                    <li class="nav-item">--}}
+{{--                        <a href="{{ route('user.index') }}" class="nav-link">--}}
+{{--                            <i class="nav-icon fas fa-users"></i>--}}
+{{--                            <p>Користувачі</p>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->

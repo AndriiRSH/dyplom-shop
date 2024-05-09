@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\Product\ProductController;
+use App\Http\Controllers\Admin\Order\OrderController;
 use App\Http\Controllers\Admin\User\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Color\ColorController;
@@ -52,25 +53,25 @@ Route::group(['namespace' => 'App\Http\Controllers\Admin', 'prefix' => 'admin'],
 
         Route::get('/', \App\Http\Controllers\Admin\Main\AdminController::class)->name('main.index');
 
-        Route::group(['prefix' => 'colors'], function (){
-            Route::get('/', [ColorController::class, 'index'])->name('color.index');
-            Route::get('/create', [ColorController::class, 'create'])->name('color.create');
-            Route::post('/', [ColorController::class, 'store'])->name('color.store');
-            Route::get('/{color}/edit', [ColorController::class, 'edit'])->name('color.edit');
-            Route::get('/{color}', [ColorController::class, 'show'])->name('color.show');
-            Route::patch('/{color}', [ColorController::class, 'update'])->name('color.update');
-            Route::delete('/{color}', [ColorController::class, 'delete'])->name('color.delete');
-        });
-
-        Route::group(['prefix' => 'users'], function () {
-            Route::get('/', [UserController::class, 'index'])->name('user.index');
-            Route::get('/create', [UserController::class, 'create'])->name('user.create');
-            Route::post('/', [UserController::class, 'store'])->name('user.store');
-            Route::get('/{user}', [UserController::class, 'show'])->name('user.show');
-            Route::get('/{user}/edit', [UserController::class, 'edit'])->name('user.edit');
-            Route::patch('/{user}', [UserController::class, 'update'])->name('user.update');
-            Route::delete('/{user}', [UserController::class, 'delete'])->name('user.delete');
-        });
+//        Route::group(['prefix' => 'colors'], function (){
+//            Route::get('/', [ColorController::class, 'index'])->name('color.index');
+//            Route::get('/create', [ColorController::class, 'create'])->name('color.create');
+//            Route::post('/', [ColorController::class, 'store'])->name('color.store');
+//            Route::get('/{color}/edit', [ColorController::class, 'edit'])->name('color.edit');
+//            Route::get('/{color}', [ColorController::class, 'show'])->name('color.show');
+//            Route::patch('/{color}', [ColorController::class, 'update'])->name('color.update');
+//            Route::delete('/{color}', [ColorController::class, 'delete'])->name('color.delete');
+//        });
+//
+//        Route::group(['prefix' => 'users'], function () {
+//            Route::get('/', [UserController::class, 'index'])->name('user.index');
+//            Route::get('/create', [UserController::class, 'create'])->name('user.create');
+//            Route::post('/', [UserController::class, 'store'])->name('user.store');
+//            Route::get('/{user}', [UserController::class, 'show'])->name('user.show');
+//            Route::get('/{user}/edit', [UserController::class, 'edit'])->name('user.edit');
+//            Route::patch('/{user}', [UserController::class, 'update'])->name('user.update');
+//            Route::delete('/{user}', [UserController::class, 'delete'])->name('user.delete');
+//        });
 
         Route::group(['prefix' => 'products'], function () {
             Route::get('/', [ProductController::class, 'index'])->name('product.index');
@@ -81,6 +82,12 @@ Route::group(['namespace' => 'App\Http\Controllers\Admin', 'prefix' => 'admin'],
             Route::patch('/{product}', [ProductController::class, 'update'])->name('product.update');
             Route::delete('/{product}', [ProductController::class, 'delete'])->name('product.delete');
         });
+
+//    Route::group(['prefix' => 'orders'], function () {
+//        Route::get('/', [OrderController::class, 'index'])->name('product.index');
+//        Route::get('/{product}', [OrderController::class, 'show'])->name('product.show');
+//        Route::delete('/{product}', [OrderController::class, 'delete'])->name('product.delete');
+//    });
 
 });
 

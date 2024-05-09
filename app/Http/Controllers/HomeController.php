@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -28,6 +29,12 @@ class HomeController extends Controller
 
         // Виконання різних дій в залежності від обраного методу оплати
         if ($paymentMethod === 'checkmo') {
+            $totalPrice = Cookie::get('cookieName');
+            $order = new Order();
+            $order->status = 'unpaid';
+            $order->total_price = $totalPrice;
+            $order->session_id = Auth::id();
+            $order->save();
             return redirect()->route('finalorder');
         } elseif ($paymentMethod === 'card') {
             return redirect()->route('session');
@@ -37,15 +44,6 @@ class HomeController extends Controller
 //        return redirect()->route('success');
     }
 
-    public function saveData(Request $request)
-    {
-        dd(1);
-        // Обробка отриманих даних
-        $data = $request->input('data');
-
-        // Відправка відповіді назад
-        return response()->json(['message' => 'Дані успішно збережені'], 200);
-    }
     /**
      * Create a new controller instance.
      *

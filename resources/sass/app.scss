@@ -331,3 +331,17 @@ label{
     background-color: #e9ecef;
     border-color: #dee2e6;
 }
+
+.card-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: all 0.9s ease; /* Додано перехід */
+}
+
+.card:hover .card-title {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+}
+
