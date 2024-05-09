@@ -30,29 +30,27 @@
 <!--                <p v-if="!scrolledNav" class="d-inline-block mx-auto fs-2 design ml-2">DESIGN MOSKALENKO</p>-->
                 <p v-if="!scrolledNav" class="d-inline-block mx-auto fs-2 design ml-2">Оберіть товари для себе</p>
                 <div @click="toggleMobileNavBasket" class="">
-<!--                    <a href="" class="">-->
                         <img width="30" height="30" alt="Корзина" src="/images/cart.svg">
-<!--                    </a>-->
-<!--                    <span class="cart-price">29998 грн.</span>-->
                 </div>
                 <div class="hidden_menu-basket" :class="{ 'menu-active-basket': mobileNavBasket }">
                     <div class="menu_wrapper-basket" style="transform: matrix(1, 0, 0, 1, 0, 0); position: relative;">
                         <div class="cart">
-                            <i @click="toggleMobileNavBasket" class="fa-light fa-x"></i>
-                            <cart></cart>
-                            <div style="display: flex; align-items: center; margin-top: 20px;">
-                                <h3 style="margin-right: 10px;">До сплати:</h3>
-                                <h4 style="margin-left: 245px;">{{ totalCost }}₴</h4>
+                            <div v-if="cartShow">
+                                <div class="cart mt-3" style="max-height: 100vh; padding-bottom: 50px;  overflow-y: auto;">
+                                <i @click="toggleMobileNavBasket" class="fa-light fa-x"></i>
+                                <cart></cart>
+                                </div>
                             </div>
 <!--                            <button style="background-color: white; color: black; border: 1px solid black; padding: 10px 20px; width: 300px; margin-left: 70px; border-radius: 10px;">Оформити</button>-->
 <!--                            <a href="/checkout" style="background-color: white; color: black; border: 1px solid black; padding: 10px 20px; width: 300px; margin-left: 70px; border-radius: 10px; text-decoration: none; display: inline-block; text-align: center">Оформити</a>-->
-                            <form action="/session" method="POST">
-                                <input type="hidden" name="_token" v-bind:value="csrf_token">
-                                <button @click="saveData" type="submit" id="checkout-live-button" style="background-color: white; color: black; border: 1px solid black; padding: 10px 20px; width: 300px; margin-left: 70px; border-radius: 10px; text-decoration: none; display: inline-block; text-align: center">Оформити</button>
-                            </form>
+<!--                            <form action="/session" method="POST">-->
+<!--                                <input type="hidden" name="_token" v-bind:value="csrf_token">-->
+<!--                                <button @click="saveData" type="submit" id="checkout-live-button" style="background-color: white; color: black; border: 1px solid black; padding: 10px 20px; width: 300px; margin-left: 70px; border-radius: 10px; text-decoration: none; display: inline-block; text-align: center">Оформити</button>-->
+<!--                            </form>-->
                         </div>
                     </div>
                 </div>
+                <div class="overlay" v-if="showModal"></div>
             </div>
         </nav>
     </header>
@@ -60,7 +58,6 @@
 
 <script>
 import Cart from "./Cart.vue";
-import axios from 'axios';
 
 export default {
     name: "NavigationProducts",
@@ -77,23 +74,24 @@ export default {
             products: [],
             csrf_token: null,
             myItem: '',
+            showModal: false,
+            cartShow: false,
         };
     },
-    computed: {
-        totalCost() {
-            this.getCartProducts();
-            return this.products.reduce((total, item) => total + item.price, 0);
-        }
-    },
+    // computed: {
+    //     totalCost() {
+    //         this.getCartProducts();
+    //         return this.products.reduce((total, item) => total + item.price, 0);
+    //     }
+    // },
     created() {
       this.fetchCsrfToken();
       window.addEventListener("resize", this.checkScreen);
       this.checkScreen();
     },
     mounted() {
-        this.myItem = this.totalCost;
-        console.log(this.totalCost);
-        this.setCookie('cookieName', this.myItem, 7);
+        // this.myItem = this.totalCost;
+        // this.setCookie('cookieName', this.myItem, 7);
         window.addEventListener("scroll", this.updateScroll);
         this.getCartProducts();
     },
@@ -101,27 +99,15 @@ export default {
         window.removeEventListener('scroll', this.handleScroll);
     },
     methods: {
-        setCookie(name,value,days) {
-            var expires = "";
-            if (days) {
-                var date = new Date();
-                date.setTime(date.getTime() + (days*24*60*60*1000));
-                expires = "; expires=" + date.toUTCString();
-            }
-            document.cookie = name + "=" + (value || "")  + expires + "; path=/";
-        },
-
-        saveData() {
-            axios.post('/session', {
-                data: this.products
-            })
-                .then(response => {
-                    console.log(response.data);
-                })
-                .catch(error => {
-                    console.error(error);
-                });
-        },
+        // setCookie(name,value,days) {
+        //     var expires = "";
+        //     if (days) {
+        //         var date = new Date();
+        //         date.setTime(date.getTime() + (days*24*60*60*1000));
+        //         expires = "; expires=" + date.toUTCString();
+        //     }
+        //     document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+        // },
 
         fetchCsrfToken() {
             this.csrf_token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
@@ -137,6 +123,8 @@ export default {
 
         toggleMobileNavBasket(){
             this.mobileNavBasket = !this.mobileNavBasket;
+            this.showModal = !this.showModal;
+            this.cartShow = !this.cartShow;
         },
 
         updateScroll(){
@@ -162,6 +150,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Затемнення */
+}
 
 .destroy-basket-item{
     margin-left: 100px;

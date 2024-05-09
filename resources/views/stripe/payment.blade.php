@@ -121,7 +121,7 @@
                     <h5 class="card-title mb-0">Введення контактних даних</h5>
                 </div>
                 <div class="card-body">
-                    <form>
+{{--                    <form>--}}
                         <div class="form-group">
                             <label for="name">Ім'я:</label>
                             <input type="text" class="form-control" id="name" placeholder="Введіть ваше ім'я">
@@ -134,25 +134,47 @@
                             <label for="phone">Телефон:</label>
                             <input type="tel" class="form-control" id="phone" placeholder="Введіть ваш номер телефону">
                         </div>
-                        <div class="form-group">
-                            <div data-v-2a448dc0="" class="sf-radio form__radio payment-method sf-radio--is-active mt-5" data-qa-node="checkmo" style="display: flex; flex-direction: row; align-items: flex-start;">
-                                <div data-v-2a448dc0="" class="o-payment__label prelabeled__label" style="margin-right: 10px;">
-                                    Спосіб оплати
-                                </div>
-                                <div style="display: flex; flex-direction: column;">
-                                    <label class="sf-radio__container" style="margin-bottom: 10px; display: flex; align-items: center;">
-                                        <input type="radio" name="payment-method" value="checkmo" style="outline: none; margin-right: 5px;">
-                                        <div class="sf-radio__label">Оплата при отриманні замовлення ГОТІВКОЮ</div>
-                                    </label>
-                                    <label class="sf-radio__container" style="display: flex; align-items: center;">
-                                        <input type="radio" name="payment-method" value="checkmo" style="outline: none; margin-right: 5px;">
-                                        <div class="sf-radio__label">Сплатити карткою зараз (VISA/Mastercard)</div>
-                                    </label>
+                        <form action="{{ route('checkoutprice') }}" method="POST">
+                            @csrf
+                            <div class="form-group">
+                                <div data-v-2a448dc0="" class="sf-radio form__radio payment-method sf-radio--is-active mt-5" data-qa-node="checkmo" style="display: flex; flex-direction: row; align-items: flex-start;">
+                                    <div data-v-2a448dc0="" class="o-payment__label prelabeled__label" style="margin-right: 10px;">
+                                        Спосіб оплати
+                                    </div>
+                                    <div style="display: flex; flex-direction: column;">
+                                        <label class="sf-radio__container" style="margin-bottom: 10px; display: flex; align-items: center;">
+                                            <input type="radio" name="payment-method" value="checkmo" style="outline: none; margin-right: 5px;">
+                                            <div class="sf-radio__label">Оплата при отриманні замовлення ГОТІВКОЮ</div>
+                                        </label>
+                                        <label class="sf-radio__container" style="display: flex; align-items: center;">
+                                            <input type="radio" name="payment-method" value="card" style="outline: none; margin-right: 5px;">
+                                            <div class="sf-radio__label">Сплатити карткою зараз (VISA/Mastercard)</div>
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                            <button type="submit" class="btn btn-dark btn-block">Оформити</button>
+                        </form>
+
+                        {{--                        <div class="form-group">--}}
+{{--                            <div data-v-2a448dc0="" class="sf-radio form__radio payment-method sf-radio--is-active mt-5" data-qa-node="checkmo" style="display: flex; flex-direction: row; align-items: flex-start;">--}}
+{{--                                <div data-v-2a448dc0="" class="o-payment__label prelabeled__label" style="margin-right: 10px;">--}}
+{{--                                    Спосіб оплати--}}
+{{--                                </div>--}}
+{{--                                <div style="display: flex; flex-direction: column;">--}}
+{{--                                    <label class="sf-radio__container" style="margin-bottom: 10px; display: flex; align-items: center;">--}}
+{{--                                        <input type="radio" name="payment-method" value="checkmo" style="outline: none; margin-right: 5px;">--}}
+{{--                                        <div class="sf-radio__label">Оплата при отриманні замовлення ГОТІВКОЮ</div>--}}
+{{--                                    </label>--}}
+{{--                                    <label class="sf-radio__container" style="display: flex; align-items: center;">--}}
+{{--                                        <input type="radio" name="payment-method" value="checkmo" style="outline: none; margin-right: 5px;">--}}
+{{--                                        <div class="sf-radio__label">Сплатити карткою зараз (VISA/Mastercard)</div>--}}
+{{--                                    </label>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 {{--                        <button type="submit" class="btn btn-primary btn-block">Надіслати</button>--}}
-                    </form>
+{{--                    </form>--}}
                 </div>
             </div>
         </div>
@@ -162,7 +184,7 @@
                     <h4>Сума замовлення:</h4>
                     <h3 style="margin-right: 30px">{{ $cookieValue }}₴</h3>
                 </div>
-                <button type="" class="btn btn-dark btn-block mt-5">Оформити</button>
+{{--                <button type="" class="btn btn-dark btn-block mt-5">Оформити</button>--}}
                 <p class="mt-5">Вартість доставки узгоджується по телефону</p>
             </div>
         </div>

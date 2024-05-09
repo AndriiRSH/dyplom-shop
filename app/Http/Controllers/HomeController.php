@@ -16,6 +16,26 @@ use Illuminate\Support\Facades\Crypt;
 
 class HomeController extends Controller
 {
+    public function finalorder()
+    {
+        return view('finalorder');
+    }
+
+    public function checkoutprice(Request $request)
+    {
+        // Отримання вибраного методу оплати з форми
+        $paymentMethod = $request->input('payment-method');
+
+        // Виконання різних дій в залежності від обраного методу оплати
+        if ($paymentMethod === 'checkmo') {
+            return redirect()->route('finalorder');
+        } elseif ($paymentMethod === 'card') {
+            return redirect()->route('session');
+        }
+
+        // Повернення результата, наприклад, перенаправлення на іншу сторінку
+//        return redirect()->route('success');
+    }
 
     public function saveData(Request $request)
     {
@@ -93,7 +113,9 @@ class HomeController extends Controller
             'cancel_url'  => route('checkout'),
         ]);
         return redirect()->away($session->url);
-    }public function success()
+    }
+
+    public function success()
 {
     return "Works";
 }

@@ -14,7 +14,6 @@ export default {
 
     methods: {
         addToCart(product){
-
             let cart = localStorage.getItem('cart')
             let newProduct = [
                 {
@@ -26,7 +25,6 @@ export default {
                 }
             ]
             if (!cart) {
-
                 localStorage.setItem('cart', JSON.stringify(newProduct));
             } else {
                 cart = JSON.parse(cart)
@@ -43,6 +41,7 @@ export default {
 
         },
     },
+
 }
 </script>
 

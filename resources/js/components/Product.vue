@@ -60,22 +60,6 @@ export default {
       },
     },
 
-    // data() {
-    //     return {
-    //        product: []
-    //     }
-    // },
-    // methods: {
-    //     getProduct() {
-    //         axios.get('/api/posts/{post}')
-    //             .then((response) => {
-    //               this.product = response.data.data
-    //             })
-    //     }
-    // },
-    // mounted() {
-    //     this.getProduct()
-    // }
 }
 </script>
 

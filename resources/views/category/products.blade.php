@@ -33,11 +33,12 @@
             @foreach($products as $product)
                 <a href="{{ route('post.show', $product->id) }}" class="col-md-4 mb-4">
 {{--                <router-link :to="{ name: 'product', params: { id: {{ $product->id }} } }" class="col-md-4 mb-4">--}}
-                <div class="card ">
+                <div class="card">
+{{--                <div class="card " style="height: 550px;">--}}
                         <img src="{{ Storage::url('public/' . $product->preview_image) }}" style="height: 400px; width: 400px; object-fit: cover; object-position: center; margin-right: 750px" class="card-img-top" alt="Зображення">
                         <div class="card-body">
                             <h5 class="card-title text-center fs-2">{{ $product->title }}</h5>
-                            <div class="d-flex justify-content-between align-center">
+                            <div class="d-flex justify-content-between align-center" >
                                 <div class="d-flex flex-column ">
                                     <span>ЦІНА:</span>
                                     <b class="fs-4">{{ $product->price }} ₴</b>
