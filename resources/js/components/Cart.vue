@@ -1,16 +1,32 @@
 
 <template>
-    <div class="product mt-3 " v-for="product in products">
-        <img :src="'/storage/' + product.preview_image" alt="фото товару" class="img-fluid">
-        <div class="name">{{ product.title }}</div>
-        <div class="price">{{ product.price }}₴</div>
-        <i @click.prevent="removeProduct(product.id)" class="fa-regular fa-circle-xmark destroy-basket-item"></i>
-    </div>
-    <div style="display: flex; align-items: center; margin-top: 20px;">
-        <h3 style="margin-right: 10px;">До сплати:</h3>
-        <h4 style="margin-left: 245px;">{{ totalCost }}₴</h4>
-    </div>
-    <a href="/checkout" style="background-color: white; color: black; border: 1px solid black; padding: 10px 20px; width: 300px; margin-left: 70px; border-radius: 10px; text-decoration: none; display: inline-block; text-align: center">Оформити</a>
+    <form action="/checkout" method="POST">
+        <div class="product mt-3 " v-for="(product, index) in products" :key="index">
+            <img :src="'/storage/' + product.preview_image" alt="фото товару" class="img-fluid">
+            <div class="name">{{ product.title }}</div>
+            <div class="price">{{ product.price }}₴</div>
+            <i @click.prevent="removeProduct(product.id)" class="fa-regular fa-circle-xmark destroy-basket-item"></i>
+<!--            <input type="hidden" name="product_ids[]" v-model="product.id">-->
+            <input type="hidden" :name="'products[' + index + '][id]'" :value="product.id">
+        </div>
+        <div style="display: flex; align-items: center; margin-top: 20px;">
+            <h3 style="margin-right: 10px;">До сплати:</h3>
+            <h4 style="margin-left: 245px;">{{ totalCost }}₴</h4>
+        </div>
+        <input type="hidden" name="_token" v-bind:value="csrf_token">
+        <button type="submit" style="background-color: white; color: black; border: 1px solid black; padding: 10px 20px; width: 300px; margin-left: 70px; border-radius: 10px; text-decoration: none; display: inline-block; text-align: center">Оформити</button>
+    </form>
+<!--    <div class="product mt-3 " v-for="product in products">-->
+<!--        <img :src="'/storage/' + product.preview_image" alt="фото товару" class="img-fluid">-->
+<!--        <div class="name">{{ product.title }}</div>-->
+<!--        <div class="price">{{ product.price }}₴</div>-->
+<!--        <i @click.prevent="removeProduct(product.id)" class="fa-regular fa-circle-xmark destroy-basket-item"></i>-->
+<!--    </div>-->
+<!--    <div style="display: flex; align-items: center; margin-top: 20px;">-->
+<!--        <h3 style="margin-right: 10px;">До сплати:</h3>-->
+<!--        <h4 style="margin-left: 245px;">{{ totalCost }}₴</h4>-->
+<!--    </div>-->
+<!--    <a href="/checkout" style="background-color: white; color: black; border: 1px solid black; padding: 10px 20px; width: 300px; margin-left: 70px; border-radius: 10px; text-decoration: none; display: inline-block; text-align: center">Оформити</a>-->
 </template>
 
 <script>
@@ -29,6 +45,7 @@ export default {
             myItem: '',
             showModal: false,
             cartShow: false,
+            csrf_token: null,
         };
     },
     computed: {
@@ -37,7 +54,13 @@ export default {
             return this.products.reduce((total, item) => total + item.price, 0);
         }
     },
+    created() {
+        this.fetchCsrfToken();
+    },
     methods:{
+        fetchCsrfToken() {
+            this.csrf_token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        },
         setCookie(name,value,days) {
             var expires = "";
             if (days) {

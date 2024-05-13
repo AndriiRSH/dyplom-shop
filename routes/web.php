@@ -29,7 +29,7 @@ use App\Http\Controllers\HomeController;
 //    });
 //});
 
-Route::get('/checkout', [HomeController::class,'checkout'])->name('checkout');
+Route::post('/checkout', [HomeController::class,'checkout'])->name('checkout');
 Route::get('/finalorder', [HomeController::class,'finalorder'])->name('finalorder');
 Route::post('/checkoutprice', [HomeController::class,'checkoutprice'])->name('checkoutprice');
 Route::get('/session', [HomeController::class,'session'])->name('session');

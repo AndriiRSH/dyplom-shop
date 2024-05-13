@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Crypt;
 
 class HomeController extends Controller
 {
+    private $dataArray = [];
+
     public function finalorder()
     {
         return view('finalorder');
@@ -26,22 +28,32 @@ class HomeController extends Controller
     {
         // Отримання вибраного методу оплати з форми
         $paymentMethod = $request->input('payment-method');
-
+        $dataArray = session('dataArray');
+        dd($dataArray);
         // Виконання різних дій в залежності від обраного методу оплати
         if ($paymentMethod === 'checkmo') {
             $totalPrice = Cookie::get('cookieName');
             $order = new Order();
             $order->status = 'unpaid';
             $order->total_price = $totalPrice;
-            $order->session_id = Auth::id();
+            $order->session_id = session()->getId();
             $order->save();
+            dd($order);
             return redirect()->route('finalorder');
         } elseif ($paymentMethod === 'card') {
             return redirect()->route('session');
         }
 
-        // Повернення результата, наприклад, перенаправлення на іншу сторінку
-//        return redirect()->route('success');
+    }
+
+    public function checkout(Request $request)
+    {
+        foreach ($request->input('products') as $key => $value){
+            $this->dataArray[$key] = $value;
+        }
+        session(['dataArray' => $this->dataArray]);
+        $cookieValue = Cookie::get('cookieName');
+        return view('stripe.payment', compact('cookieValue'));
     }
 
     /**
@@ -81,11 +93,7 @@ class HomeController extends Controller
         return view('post.show', compact('product','categories', 'randomProduct'));
     }
 
-    public function checkout()
-    {
-        $cookieValue = Cookie::get('cookieName');
-        return view('stripe.payment', compact('cookieValue'));
-    }
+
 
     public function session(Request $request)
     {
