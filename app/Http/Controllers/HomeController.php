@@ -29,7 +29,7 @@ class HomeController extends Controller
         // Отримання вибраного методу оплати з форми
         $paymentMethod = $request->input('payment-method');
         $dataArray = session('dataArray');
-        dd($dataArray);
+        $productIds = array_column($dataArray, 'id');
         // Виконання різних дій в залежності від обраного методу оплати
         if ($paymentMethod === 'checkmo') {
             $totalPrice = Cookie::get('cookieName');
@@ -37,8 +37,8 @@ class HomeController extends Controller
             $order->status = 'unpaid';
             $order->total_price = $totalPrice;
             $order->session_id = session()->getId();
+            $order->product_ids = $productIds;
             $order->save();
-            dd($order);
             return redirect()->route('finalorder');
         } elseif ($paymentMethod === 'card') {
             return redirect()->route('session');
