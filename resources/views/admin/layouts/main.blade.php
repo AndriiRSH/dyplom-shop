@@ -21,7 +21,7 @@
 
     <!-- Preloader -->
     <div class="preloader flex-column justify-content-center align-items-center">
-        <p class="animation__shake">Магазин</p>
+        <a href="{{ route('main.index') }}" class="animation__shake">Магазин</a>
     </div>
 
     <!-- Navbar -->
@@ -38,7 +38,13 @@
 
             <!-- Messages Dropdown Menu -->
             <li class="nav-item dropdown">
-                <button style="font-size: 14px; padding: 5px 20px; border-radius: 5px; background-color: #4CAF50; color: white; border: none;">Вихід</button>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                    <!-- Це прихований інпут для передачі токену CSRF -->
+                </form>
+
+                <button style="font-size: 14px; padding: 5px 20px; border-radius: 5px; background-color: #4CAF50; color: white; border: none;" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Вихід</button>
+
 
                 {{--                <a class="nav-link" data-toggle="dropdown" href="#">--}}
 {{--                    <i class="far fa-comments"></i>--}}
@@ -130,7 +136,7 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-        <a href="index3.html" class="brand-link">
+        <a href="{{ route('main.index') }}" class="brand-link">
             <span class="brand-text font-weight-light">Магазин</span>
         </a>
 
@@ -142,8 +148,7 @@
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
                     <li class="nav-item">
-                        <a href="" class="nav-link">
-{{--                        <a href="{{ route('order.index') }}" class="nav-link">--}}
+                        <a href="{{ route('order.index') }}" class="nav-link">
                             <i class="nav-icon fas fa-shopping-bag"></i>
                             <p>Замовлення</p>
                         </a>

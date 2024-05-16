@@ -75,19 +75,19 @@
                     <canvas id="orderChart" width="700" height="500"></canvas>
                     <!-- кінець коду для графіка -->
                 </div>
-                <div>
-                    <div class="small-box bg-info">
-                        <div class="inner">
-                            <h3>150</h3>
+{{--                <div>--}}
+{{--                    <div class="small-box bg-info">--}}
+{{--                        <div class="inner">--}}
+{{--                            <h3>150</h3>--}}
 
-                            <p>Замовлення</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-bag"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">Докладніше <i class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
+{{--                            <p>Замовлення</p>--}}
+{{--                        </div>--}}
+{{--                        <div class="icon">--}}
+{{--                            <i class="ion ion-bag"></i>--}}
+{{--                        </div>--}}
+{{--                        <a href="#" class="small-box-footer">Докладніше <i class="fas fa-arrow-circle-right"></i></a>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
 
             </div>
             <!-- /.row -->
@@ -97,14 +97,15 @@
 
     <script>
         // Дані про замовлення
-        var ordersData = [10, 15, 20, 25, 30];
-
+        // var ordersData = [10, 15, 20, 25, 30, 5, 10];
+        var ordersData = <?php echo json_encode($ordersData); ?>;
+        {{--var daysOfWeek = <?php echo json_encode($daysOfWeek); ?>;--}}
         // Малювання графіка
         var ctx = document.getElementById('orderChart').getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт'],
+                labels: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Нд'],
                 datasets: [{
                     label: 'Замовлення в день',
                     data: ordersData,
@@ -114,6 +115,8 @@
                         'rgba(255, 206, 86, 0.2)',
                         'rgba(75, 192, 192, 0.2)',
                         'rgba(153, 102, 255, 0.2)',
+                        'rgba(144, 122, 255, 0.2)',
+                        'rgba(164, 132, 255, 0.2)',
                     ],
                     borderColor: [
                         'rgba(255, 99, 132, 1)',
@@ -121,6 +124,8 @@
                         'rgba(255, 206, 86, 1)',
                         'rgba(75, 192, 192, 1)',
                         'rgba(153, 102, 255, 1)',
+                        'rgba(144, 122, 255, 0.2)',
+                        'rgba(164, 132, 255, 0.2)',
                     ],
                     borderWidth: 1
                 }]

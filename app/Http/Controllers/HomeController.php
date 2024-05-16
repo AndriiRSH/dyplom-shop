@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Stripe\Checkout\Session;
@@ -26,11 +27,9 @@ class HomeController extends Controller
 
     public function checkoutprice(Request $request)
     {
-        // Отримання вибраного методу оплати з форми
         $paymentMethod = $request->input('payment-method');
         $dataArray = session('dataArray');
         $productIds = array_column($dataArray, 'id');
-        // Виконання різних дій в залежності від обраного методу оплати
         if ($paymentMethod === 'checkmo') {
             $totalPrice = Cookie::get('cookieName');
             $order = new Order();
@@ -41,9 +40,15 @@ class HomeController extends Controller
             $order->save();
             return redirect()->route('finalorder');
         } elseif ($paymentMethod === 'card') {
+            $totalPrice = Cookie::get('cookieName');
+            $order = new Order();
+            $order->status = 'paid';
+            $order->total_price = $totalPrice;
+            $order->session_id = session()->getId();
+            $order->product_ids = $productIds;
+            $order->save();
             return redirect()->route('session');
         }
-
     }
 
     public function checkout(Request $request)
@@ -73,6 +78,20 @@ class HomeController extends Controller
      */
     public function index()
     {
+//        $userData = [
+//            'name' => 'Ім\'я',
+//            'surname' => 'Прізвище',
+//            'email' => 'email@example.com',
+//            'password' => Hash::make('password123'), // Потрібно хешувати пароль
+//            'patronymic' => 'По батькові',
+//            'age' => 25,
+//            'gender' => User::GENDER_MALE, // Оберіть відповідне значення (1 або 2)
+//            'address' => 'Адреса',
+//            'role' => User::ROLE_READER, // Оберіть відповідне значення (0 або 1)
+//        ];
+//
+//        User::create($userData);
+//        dd($userData);
         $categories = Category::all();
         return view('home', compact('categories'));
     }

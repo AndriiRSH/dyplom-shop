@@ -53,6 +53,11 @@ Route::group(['namespace' => 'App\Http\Controllers\Admin', 'prefix' => 'admin'],
 
         Route::get('/', \App\Http\Controllers\Admin\Main\AdminController::class)->name('main.index');
 
+        Route::group(['prefix' => 'orders'], function () {
+            Route::get('/', [OrderController::class, 'index'])->name('order.index');
+            Route::get('/{product}', [OrderController::class, 'show'])->name('order.show');
+            Route::delete('/{product}', [OrderController::class, 'delete'])->name('order.delete');
+        });
 //        Route::group(['prefix' => 'colors'], function (){
 //            Route::get('/', [ColorController::class, 'index'])->name('color.index');
 //            Route::get('/create', [ColorController::class, 'create'])->name('color.create');
@@ -83,15 +88,13 @@ Route::group(['namespace' => 'App\Http\Controllers\Admin', 'prefix' => 'admin'],
             Route::delete('/{product}', [ProductController::class, 'delete'])->name('product.delete');
         });
 
-//    Route::group(['prefix' => 'orders'], function () {
-//        Route::get('/', [OrderController::class, 'index'])->name('product.index');
-//        Route::get('/{product}', [OrderController::class, 'show'])->name('product.show');
-//        Route::delete('/{product}', [OrderController::class, 'delete'])->name('product.delete');
-//    });
+
 
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 
 
 Auth::routes();
