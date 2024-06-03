@@ -121,21 +121,22 @@
                     <h5 class="card-title mb-0">Введення контактних даних</h5>
                 </div>
                 <div class="card-body">
-{{--                    <form>--}}
+                    <form action="{{ route('checkoutprice') }}" method="POST">
+                        @csrf
                         <div class="form-group">
                             <label for="name">Ім'я:</label>
-                            <input type="text" class="form-control" id="name" placeholder="Введіть ваше ім'я">
+                            <input name="name" type="text" class="form-control" id="name" placeholder="Введіть ваше ім'я">
                         </div>
                         <div class="form-group">
                             <label for="email">Email:</label>
-                            <input type="email" class="form-control" id="email" placeholder="Введіть ваш email">
+                            <input name="email" type="email" class="form-control" id="email" placeholder="Введіть ваш email">
                         </div>
                         <div class="form-group">
                             <label for="phone">Телефон:</label>
-                            <input type="tel" class="form-control" id="phone" placeholder="Введіть ваш номер телефону">
+                            <input name="phone" type="tel" class="form-control" id="phone" placeholder="Введіть ваш номер телефону">
                         </div>
-                        <form action="{{ route('checkoutprice') }}" method="POST">
-                            @csrf
+{{--                        <form action="{{ route('checkoutprice') }}" method="POST">--}}
+{{--                            @csrf--}}
                             <div class="form-group">
                                 <div data-v-2a448dc0="" class="sf-radio form__radio payment-method sf-radio--is-active mt-5" data-qa-node="checkmo" style="display: flex; flex-direction: row; align-items: flex-start;">
                                     <div data-v-2a448dc0="" class="o-payment__label prelabeled__label" style="margin-right: 10px;">

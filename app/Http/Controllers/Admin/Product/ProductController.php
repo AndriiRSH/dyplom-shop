@@ -47,12 +47,9 @@ class ProductController
 
         $data = $request->validated();
 
-//        $productImages = $data['product_images'];
         $data['preview_image'] = Storage::disk('public')->put('/images', $data['preview_image']);
 
-        unset($data['colors'], $data['product_images']);
-
-        $product = Product::firstOrCreate([
+        Product::firstOrCreate([
             'title' => $data['title']
         ], $data);
 

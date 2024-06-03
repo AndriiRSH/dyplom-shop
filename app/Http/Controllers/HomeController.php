@@ -28,6 +28,9 @@ class HomeController extends Controller
     public function checkoutprice(Request $request)
     {
         $paymentMethod = $request->input('payment-method');
+        $name = $request->input('name');
+        $phone = $request->input('phone');
+        $email = $request->input('email');
         $dataArray = session('dataArray');
         $productIds = array_column($dataArray, 'id');
         if ($paymentMethod === 'checkmo') {
@@ -37,6 +40,9 @@ class HomeController extends Controller
             $order->total_price = $totalPrice;
             $order->session_id = session()->getId();
             $order->product_ids = $productIds;
+            $order->email = $email;
+            $order->phone = $phone;
+            $order->name = $name;
             $order->save();
             return redirect()->route('finalorder');
         } elseif ($paymentMethod === 'card') {
@@ -46,6 +52,9 @@ class HomeController extends Controller
             $order->total_price = $totalPrice;
             $order->session_id = session()->getId();
             $order->product_ids = $productIds;
+            $order->email = $email;
+            $order->phone = $phone;
+            $order->name = $name;
             $order->save();
             return redirect()->route('session');
         }

@@ -133,7 +133,12 @@
             options: {
                 scales: {
                     y: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1 // Встановлює ціну поділки по осі y
+                        },
+                        min: 0, // Мінімальне значення осі Y
+                        max: 10
                     }
                 }
             }

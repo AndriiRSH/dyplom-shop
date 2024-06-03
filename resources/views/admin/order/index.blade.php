@@ -37,6 +37,9 @@
                                     <th>Статус оплати</th>
                                     <th>Фінальна сума</th>
                                     <th>Товари</th>
+                                    <th>Email</th>
+                                    <th>Телефон</th>
+                                    <th>Ім'я</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -47,9 +50,12 @@
                                         <td>{{ $order->total_price }}</td>
                                         <td>
                                         @foreach($products[0] as $product)
-                                            <a href="{{ route('product.show', $product->id) }}">{{ $product->title }}</a> <br>
+                                            <a href="{{ route('product.show', $product->id) }}">{{ $product->title }}<br></a>
                                         @endforeach
                                         </td>
+                                        <td>{{ $order->email }}</td>
+                                        <td>{{ $order->phone }}</td>
+                                        <td>{{ $order->name }}</td>
                                         <td>
                                             <form action="{{ route('order.delete', $order->id) }}" method="post">
                                                 @csrf

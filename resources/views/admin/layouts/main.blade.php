@@ -225,9 +225,9 @@
 <script src="{{ asset('adminlte/dist/js/adminlte.js') }}"></script>
 <script src="{{ asset('adminlte/plugins/select2/js/select2.full.min.js') }}"></script>
 
-<script>
-    $('.tags').select2()
-    $('.colors').select2()
-</script>
+{{--<script>--}}
+{{--    $('.tags').select2()--}}
+{{--    $('.colors').select2()--}}
+{{--</script>--}}
 </body>
 </html>

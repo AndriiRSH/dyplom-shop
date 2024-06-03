@@ -36,13 +36,11 @@
 
                     <div class="form-group">
                         <textarea name="content" class="form-control" cols="30" rows="10" placeholder="Контент"></textarea>
-{{--                        <input type="text" name="content">--}}
                     </div>
 
                     <div class="form-group">
                         <input type="text" name="price" class="form-control" placeholder="Ціна">
                     </div>
-
                     <div class="form-group">
                         <div class="input-group">
                             <div class="custom-file">
@@ -51,31 +49,54 @@
                             </div>
                         </div>
                     </div>
+{{--                    <div class="">--}}
+{{--                        <div class="">--}}
+{{--                            <div class="">--}}
+{{--                                <input type="file" id="preview_image" name="preview_image">--}}
+{{--                                <label for="preview_image" class="">Виберіть картинку</label>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div>--}}
+{{--                        <input type="file" id="preview_image" name="preview_image">--}}
+{{--                        <label for="preview_image">Виберіть картинку</label>--}}
+{{--                    </div>--}}
+{{--                    <input type="file" id="fileInput">--}}
+{{--                    <label for="fileInput" id="fileLabel">Виберіть картинку</label>--}}
 
-                    <div class="form-group">
-                        <div class="input-group">
-                            <div class="custom-file">
-                                <input name="product_images[]" type="file" class="custom-file-input" id="exampleInputFile">
-                                <label class="custom-file-label" for="exampleInputFile">Виберіть файл</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="input-group">
-                            <div class="custom-file">
-                                <input name="product_images[]" type="file" class="custom-file-input" id="exampleInputFile">
-                                <label class="custom-file-label" for="exampleInputFile">Виберіть файл</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="input-group">
-                            <div class="custom-file">
-                                <input name="product_images[]" type="file" class="custom-file-input" id="exampleInputFile">
-                                <label class="custom-file-label" for="exampleInputFile">Виберіть файл</label>
-                            </div>
-                        </div>
-                    </div>
+{{--                                        <div class="form-group">--}}
+{{--                        <div class="input-group">--}}
+{{--                            <div class="custom-file">--}}
+{{--                                <input name="preview_image" type="file" class="custom-file-input" id="exampleInputFile">--}}
+{{--                                <label class="custom-file-label" for="exampleInputFile">Виберіть файл</label>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+
+{{--                    <div class="form-group">--}}
+{{--                        <div class="input-group">--}}
+{{--                            <div class="custom-file">--}}
+{{--                                <input name="preview_image" type="file" class="custom-file-input" id="exampleInputFile">--}}
+{{--                                <label class="custom-file-label" for="exampleInputFile">Виберіть файл</label>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="form-group">--}}
+{{--                        <div class="input-group">--}}
+{{--                            <div class="custom-file">--}}
+{{--                                <input name="product_images[]" type="file" class="custom-file-input" id="exampleInputFile">--}}
+{{--                                <label class="custom-file-label" for="exampleInputFile">Виберіть файл</label>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="form-group">--}}
+{{--                        <div class="input-group">--}}
+{{--                            <div class="custom-file">--}}
+{{--                                <input name="product_images[]" type="file" class="custom-file-input" id="exampleInputFile">--}}
+{{--                                <label class="custom-file-label" for="exampleInputFile">Виберіть файл</label>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
 
                     <div class="form-group">
                         <select name="category_id" class="form-control select2" style="width: 100%;">
@@ -95,4 +116,6 @@
         </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
+
+
 @endsection
