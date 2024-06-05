@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\Product\ProductController;
+use App\Http\Controllers\Admin\Category\CategoryController;
 use App\Http\Controllers\Admin\Order\OrderController;
 use App\Http\Controllers\Admin\User\UserController;
 use Illuminate\Support\Facades\Route;
@@ -55,9 +56,19 @@ Route::group(['namespace' => 'App\Http\Controllers\Admin', 'prefix' => 'admin'],
 
         Route::group(['prefix' => 'orders'], function () {
             Route::get('/', [OrderController::class, 'index'])->name('order.index');
-            Route::get('/{product}', [OrderController::class, 'show'])->name('order.show');
-            Route::delete('/{product}', [OrderController::class, 'delete'])->name('order.delete');
+            Route::get('/{order}', [OrderController::class, 'show'])->name('order.show');
+            Route::delete('/{order}', [OrderController::class, 'delete'])->name('order.delete');
         });
+
+    Route::group(['namespace' => 'Category', 'prefix' => 'categories'], function () {
+        Route::get('/', [CategoryController::class, 'index'])->name('category.index');
+        Route::get('/create', [CategoryController::class, 'create'])->name('category.create');
+        Route::post('/', [CategoryController::class, 'store'])->name('category.store');
+        Route::get('/{category}', [CategoryController::class, 'show'])->name('category.show');
+        Route::get('/{category}/edit', [CategoryController::class, 'edit'])->name('category.edit');
+        Route::patch('/{category}', [CategoryController::class, 'update'])->name('category.update');
+        Route::delete('/{category}', [CategoryController::class, 'delete'])->name('category.delete');
+    });
 //        Route::group(['prefix' => 'colors'], function (){
 //            Route::get('/', [ColorController::class, 'index'])->name('color.index');
 //            Route::get('/create', [ColorController::class, 'create'])->name('color.create');
