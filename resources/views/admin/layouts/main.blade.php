@@ -166,13 +166,12 @@
                             <p>Категорії</p>
                         </a>
                     </li>
-{{--                    <li class="nav-item">--}}
-{{--                        <a href="" class="nav-link">--}}
-{{--                        <a href="{{ route('tag.index') }}" class="nav-link">--}}
-{{--                            <i class="nav-icon fas fa-tags"></i>--}}
-{{--                            <p>Тегі</p>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
+                    <li class="nav-item">
+                        <a href="{{ route('consultation.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-tags"></i>
+                            <p>Запити на консультацію</p>
+                        </a>
+                    </li>
 {{--                    <li class="nav-item">--}}
 {{--                        <a href="{{ route('color.index') }}" class="nav-link">--}}
 {{--                            <i class="nav-icon fas fa-palette"></i>--}}

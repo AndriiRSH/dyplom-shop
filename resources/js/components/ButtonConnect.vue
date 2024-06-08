@@ -7,8 +7,9 @@
             </div>
             <p><span class="site-link active">ОТРИМАТИ КОНСУЛЬТАЦІЮ:</span></p>
             <form action="/form/1" method="POST" autocomplete="off" onsubmit="" data-analytics="callback_form" class="focus">
-                <input type="hidden" name="_token" value="d1dS4sO5IOzI6XFbBkaNhlqqjXJEnqEcHeFBsgUY">
-                <input type="hidden" name="_method" value="PUT">
+                <input type="hidden" name="_token" v-bind:value="csrf_token">
+<!--                <input type="hidden" name="_token" value="d1dS4sO5IOzI6XFbBkaNhlqqjXJEnqEcHeFBsgUY">-->
+                <input type="hidden" name="_method" value="POST">
                 <div class="flex-form">
                 <label>
                     <span class="field-holder" v-if="!firstname">Ім'я* </span>
@@ -28,7 +29,7 @@
                 </label>
                 <label>
                     <span class="textarea-holder">Що Вас цікавить?</span>
-                    <textarea name="message"></textarea>
+                    <textarea name="message" v-model="message"></textarea>
                 </label>
             </div>
                 <label class="label-submit">
@@ -52,15 +53,21 @@ export default {
             lastname: '',
             phone: '',
             email: '',
+            message: '',
+            csrf_token: null,
         };
     },
     created() {
         window.addEventListener("scroll", this.handleScroll);
+        this.fetchCsrfToken();
     },
     beforeDestroy() {
         window.removeEventListener("scroll", this.handleScroll);
     },
     methods: {
+        fetchCsrfToken() {
+            this.csrf_token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        },
         handleScroll() {
             // Визначаємо, чи має з'явитися компонент
             const scrollY = window.scrollY || window.pageYOffset;

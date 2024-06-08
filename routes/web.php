@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\Consultation\ConsultationController;
 use App\Http\Controllers\Admin\Product\ProductController;
 use App\Http\Controllers\Admin\Category\CategoryController;
 use App\Http\Controllers\Admin\Order\OrderController;
@@ -60,6 +61,12 @@ Route::group(['namespace' => 'App\Http\Controllers\Admin', 'prefix' => 'admin'],
             Route::delete('/{order}', [OrderController::class, 'delete'])->name('order.delete');
         });
 
+        Route::group(['prefix' => 'consultations'], function () {
+            Route::get('/', [ConsultationController::class, 'index'])->name('consultation.index');
+            Route::get('/{consultation}', [ConsultationController::class, 'show'])->name('consultation.show');
+            Route::delete('/{consultation}', [ConsultationController::class, 'delete'])->name('consultation.delete');
+        });
+
     Route::group(['namespace' => 'Category', 'prefix' => 'categories'], function () {
         Route::get('/', [CategoryController::class, 'index'])->name('category.index');
         Route::get('/create', [CategoryController::class, 'create'])->name('category.create');
@@ -104,7 +111,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Admin', 'prefix' => 'admin'],
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-
+Route::post('/form/1', [HomeController::class, 'submitForm']);;
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 
 

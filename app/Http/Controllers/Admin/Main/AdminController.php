@@ -18,11 +18,15 @@ class AdminController extends Controller
             ->groupBy('day_of_week')
             ->get();
 
-        $ordersData = [];
+        $ordersData = array_fill(0, 7, 0);
+
         foreach ($orders as $order) {
-            $ordersData[] = $order->total_orders;
+            $dayIndex = $order->day_of_week - 1;
+            $adjustedIndex = ($dayIndex + 6) % 7;
+            $ordersData[$adjustedIndex] = $order->total_orders;
         }
 
         return view('admin.main.index', compact('ordersData'));
     }
+
 }

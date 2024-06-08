@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ConsultationMail;
 use App\Models\Category;
+use App\Models\Consultation;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
@@ -11,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Stripe\Checkout\Session;
 use Illuminate\Contracts\Encryption\DecryptException;
@@ -19,6 +22,24 @@ use Illuminate\Support\Facades\Crypt;
 class HomeController extends Controller
 {
     private $dataArray = [];
+
+    public function submitForm(Request $request)
+    {
+        $firstname = $request->input('firstname');
+        $lastname = $request->input('lastname');
+        $phone = $request->input('phone');
+        $email = $request->input('email');
+        $message = $request->input('message');
+        $consultations = new Consultation();
+        $consultations->email = $email;
+        $consultations->phone = $phone;
+        $consultations->firstname = $firstname;
+        $consultations->lastname = $lastname;
+        $consultations->message = $message;
+        $consultations->save();
+        $categories = Category::all();
+        return view('home', compact('categories'));
+    }
 
     public function finalorder()
     {
@@ -31,6 +52,7 @@ class HomeController extends Controller
         $name = $request->input('name');
         $phone = $request->input('phone');
         $email = $request->input('email');
+        Mail::to($email)->send(new ConsultationMail());
         $dataArray = session('dataArray');
         $productIds = array_column($dataArray, 'id');
         if ($paymentMethod === 'checkmo') {

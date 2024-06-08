@@ -33,6 +33,7 @@ return [
     |
     */
 
+
     'mailers' => [
         'smtp' => [
             'transport' => 'smtp',
@@ -43,8 +44,14 @@ return [
             'username' => env('MAIL_USERNAME'),
             'password' => env('MAIL_PASSWORD'),
             'timeout' => null,
+            'auth_mode' => null,
             'local_domain' => env('MAIL_EHLO_DOMAIN'),
         ],
+
+//        'from' => [
+//            'address' => env('MAIL_FROM_ADDRESS', 'roshylo.andrii@chnu.edu.ua'),
+//            'name' => env('MAIL_FROM_NAME', 'Example'),
+//        ],
 
         'ses' => [
             'transport' => 'ses',
@@ -99,7 +106,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
+        'address' => env('MAIL_FROM_ADDRESS', 'andrii.rsh@gmail.com'),
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
 
