@@ -51,21 +51,23 @@ Route::get('/posts/{post}', [\App\Http\Controllers\Api\OrderController::class, '
 Route::get('/{category}/posts', [HomeController::class, 'products'])->name('category.product.index');
 Route::get('/posts/{post}', [HomeController::class, 'product'])->name('post.show');
 
+
+Route::middleware(['auth', 'admin',])->group(function () {
 Route::group(['namespace' => 'App\Http\Controllers\Admin', 'prefix' => 'admin'], function () {
 
-        Route::get('/', \App\Http\Controllers\Admin\Main\AdminController::class)->name('main.index');
+    Route::get('/', \App\Http\Controllers\Admin\Main\AdminController::class)->name('main.index');
 
-        Route::group(['prefix' => 'orders'], function () {
-            Route::get('/', [OrderController::class, 'index'])->name('order.index');
-            Route::get('/{order}', [OrderController::class, 'show'])->name('order.show');
-            Route::delete('/{order}', [OrderController::class, 'delete'])->name('order.delete');
-        });
+    Route::group(['prefix' => 'orders'], function () {
+        Route::get('/', [OrderController::class, 'index'])->name('order.index');
+        Route::get('/{order}', [OrderController::class, 'show'])->name('order.show');
+        Route::delete('/{order}', [OrderController::class, 'delete'])->name('order.delete');
+    });
 
-        Route::group(['prefix' => 'consultations'], function () {
-            Route::get('/', [ConsultationController::class, 'index'])->name('consultation.index');
-            Route::get('/{consultation}', [ConsultationController::class, 'show'])->name('consultation.show');
-            Route::delete('/{consultation}', [ConsultationController::class, 'delete'])->name('consultation.delete');
-        });
+    Route::group(['prefix' => 'consultations'], function () {
+        Route::get('/', [ConsultationController::class, 'index'])->name('consultation.index');
+        Route::get('/{consultation}', [ConsultationController::class, 'show'])->name('consultation.show');
+        Route::delete('/{consultation}', [ConsultationController::class, 'delete'])->name('consultation.delete');
+    });
 
     Route::group(['namespace' => 'Category', 'prefix' => 'categories'], function () {
         Route::get('/', [CategoryController::class, 'index'])->name('category.index');
@@ -96,18 +98,18 @@ Route::group(['namespace' => 'App\Http\Controllers\Admin', 'prefix' => 'admin'],
 //            Route::delete('/{user}', [UserController::class, 'delete'])->name('user.delete');
 //        });
 
-        Route::group(['prefix' => 'products'], function () {
-            Route::get('/', [ProductController::class, 'index'])->name('product.index');
-            Route::get('/create', [ProductController::class, 'create'])->name('product.create');
-            Route::post('/', [ProductController::class, 'store'])->name('product.store');
-            Route::get('/{product}', [ProductController::class, 'show'])->name('product.show');
-            Route::get('/{product}/edit', [ProductController::class, 'edit'])->name('product.edit');
-            Route::patch('/{product}', [ProductController::class, 'update'])->name('product.update');
-            Route::delete('/{product}', [ProductController::class, 'delete'])->name('product.delete');
-        });
+    Route::group(['prefix' => 'products'], function () {
+        Route::get('/', [ProductController::class, 'index'])->name('product.index');
+        Route::get('/create', [ProductController::class, 'create'])->name('product.create');
+        Route::post('/', [ProductController::class, 'store'])->name('product.store');
+        Route::get('/{product}', [ProductController::class, 'show'])->name('product.show');
+        Route::get('/{product}/edit', [ProductController::class, 'edit'])->name('product.edit');
+        Route::patch('/{product}', [ProductController::class, 'update'])->name('product.update');
+        Route::delete('/{product}', [ProductController::class, 'delete'])->name('product.delete');
+    });
 
 
-
+});
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
