@@ -152,7 +152,7 @@
     </div>
     <div v-else class="empty-cart">
         <h2>Ваша корзина порожня</h2>
-        <p>Додайте товари до корзини, щоб продовжити покупку.</p>
+        <p>Продовжуйте покупки</p>
     </div>
 </template>
 
@@ -268,6 +268,7 @@ i {
 }
 
 .empty-cart p {
+    margin-left: 135px;
     font-size: 18px;
 }
 </style>
