@@ -11,21 +11,6 @@
                 </div>
 <!--                <div class="hidden_menu" v-show="mobileNav" style="transform: matrix(1, 0, 0, 1, 0, 0);">-->
                     <div class="hidden_menu" :class="{ 'menu-active': mobileNav }">
-<!--                    <div class="menu_wrapper" style="transform: matrix(1, 0, 0, 1, 0, 0);">-->
-<!--                        <ul class="">-->
-<!--                            <li><a class="link">Головна</a></li>-->
-<!--                            <li><a :href="categoryProductUrl(1)" class="link">Картини</a></li>-->
-<!--                            <li><a :href="categoryProductUrl(2)" class="link">Скульптури</a></li>-->
-<!--                            <li><a :href="categoryProductUrl(3)" class="link">Декор</a></li>-->
-<!--                            <li><a :href="categoryProductUrl(4)" class="link">Дизайн</a></li>-->
-<!--                            &lt;!&ndash;                            <li><a :href="'{{ route("category.product.index", 3) }}'" class="link">Категорія2</a></li>&ndash;&gt;-->
-<!--                        </ul>-->
-<!--                        <div class="menu_wrap">-->
-<!--                            <a href="" class="fa-brands fa-instagram fa-2xl pl-3"></a>-->
-<!--                            <a href="" class="fa-brands fa-facebook fa-2xl p-3"></a>-->
-<!--                            <a href="" class="fa-brands fa-telegram fa-2xl"></a>-->
-<!--                        </div>-->
-<!--                    </div>-->
                         <div class="menu_wrapper" style="transform: matrix(1, 0, 0, 1, 0, 0); position: relative;">
                             <ul class="">
                                 <li><a class="link">Головна</a></li>
@@ -42,17 +27,17 @@
                         </div>
 
                 </div>
-                <a class="phone" href="tel:+380996529201">+380996529201</a>
-                <div class="language">
-                    <button class="font-16 font-mob-20">uk</button>
-<!--                    <ul>-->
-<!--                        <li>-->
-<!--                            <a href="#" class="font-16 font-mob-20">-->
-<!--                                en-->
-<!--                            </a>-->
-<!--                        </li>-->
-<!--                    </ul>-->
-                </div>
+                <a class="phone" href="tel:+380956449469">+380956449469</a>
+<!--                <div class="language">-->
+<!--                    <button class="font-16 font-mob-20">uk</button>-->
+<!--&lt;!&ndash;                    <ul>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <li>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <a href="#" class="font-16 font-mob-20">&ndash;&gt;-->
+<!--&lt;!&ndash;                                en&ndash;&gt;-->
+<!--&lt;!&ndash;                            </a>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </li>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </ul>&ndash;&gt;-->
+<!--                </div>-->
 
             </div>
 

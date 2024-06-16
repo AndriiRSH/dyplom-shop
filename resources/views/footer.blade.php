@@ -1,12 +1,11 @@
  <footer>
         <div class="contact_wrap">
             <address>
-                <a href="#">Чернівці, Хотинська</a>
+                <a href="#">Чернівці, вул. Хотинська, 43</a>
             </address>
             <a href="#">design.moskalenko@gmail.com</a> <br>
-            <a href="">+380996927001</a> <br>
-            <a href="">+380996927002</a> <br>
-            <a href="">+380996927003</a>
+            <a href="">+380956449469</a> <br>
+            <a href="">+380997288642</a>
         </div>
         <div class="menu_wrap">
             <a href="#">Головна</a> <br>
