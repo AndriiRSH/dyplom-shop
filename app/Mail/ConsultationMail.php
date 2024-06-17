@@ -7,6 +7,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Symfony\Component\Mailer\Envelope;
 
 class ConsultationMail extends Mailable
 {
@@ -31,7 +32,12 @@ class ConsultationMail extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.consultation')
-            ->subject('New Consultation Request');
+//        return $this->view('emails.consultation')
+//            ->subject('New Consultation Request');
+
+        return $this->from('andrii.rsh@gmail.com', config('app.name'))
+            ->subject('Subject of the email')
+            ->view('emails.consultation');
     }
+
 }
