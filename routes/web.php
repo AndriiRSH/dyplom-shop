@@ -35,12 +35,12 @@ Route::post('/checkout', [HomeController::class,'checkout'])->name('checkout');
 Route::get('/finalorder', [HomeController::class,'finalorder'])->name('finalorder');
 Route::post('/checkoutprice', [HomeController::class,'checkoutprice'])->name('checkoutprice');
 Route::get('/session', [HomeController::class,'session'])->name('session');
-//Route::get('/success', [StripePaymentController::class,'success'])->name('success');
+Route::get('/success', [HomeController::class,'success'])->name('success');
 Route::post('/webhook', [HomeController::class,'webhook'])->name('webhook');
 
-Route::middleware(['paymentStatus'])->group(function () {
-    Route::get('/success', [HomeController::class, 'success'])->name('success');
-});
+//Route::middleware(['paymentStatus'])->group(function () {
+//    Route::get('/success', [HomeController::class, 'success'])->name('success');
+//});
 
 Route::get('/posts/{post}', [\App\Http\Controllers\Api\OrderController::class, 'index']);
 

@@ -172,9 +172,9 @@ class HomeController extends Controller
     }
 
     public function success()
-{
-    return "Works";
-}
+    {
+        return redirect()->route('finalorder');
+    }
 
     public function webhook()
     {
