@@ -34,6 +34,7 @@
                 </div>
                 <div class="hidden_menu-basket" :class="{ 'menu-active-basket': mobileNavBasket }">
                     <div class="menu_wrapper-basket" style="transform: matrix(1, 0, 0, 1, 0, 0); position: relative;">
+<!--                    <div class="menu_wrapper-basket">-->
                         <div class="cart">
                             <div v-if="cartShow">
                                 <div class="cart mt-3" style="max-height: 100vh; padding-bottom: 50px;  overflow-y: auto;">
@@ -41,12 +42,6 @@
                                 <cart></cart>
                                 </div>
                             </div>
-<!--                            <button style="background-color: white; color: black; border: 1px solid black; padding: 10px 20px; width: 300px; margin-left: 70px; border-radius: 10px;">Оформити</button>-->
-<!--                            <a href="/checkout" style="background-color: white; color: black; border: 1px solid black; padding: 10px 20px; width: 300px; margin-left: 70px; border-radius: 10px; text-decoration: none; display: inline-block; text-align: center">Оформити</a>-->
-<!--                            <form action="/session" method="POST">-->
-<!--                                <input type="hidden" name="_token" v-bind:value="csrf_token">-->
-<!--                                <button @click="saveData" type="submit" id="checkout-live-button" style="background-color: white; color: black; border: 1px solid black; padding: 10px 20px; width: 300px; margin-left: 70px; border-radius: 10px; text-decoration: none; display: inline-block; text-align: center">Оформити</button>-->
-<!--                            </form>-->
                         </div>
                     </div>
                 </div>
@@ -548,20 +543,18 @@ button {
 
 .hidden_menu-basket {
     position: fixed;
-    left: 0;
     top: 0;
+    right: -100%; /* Initially position off-screen to the right */
     bottom: 0;
-    padding: 0 0 0 7.549759780370624vw;
-    //background: #fff;
+    width: 500px; /* Set the width of the basket */
+    background: #fff;
     height: 100%;
-    //transform: translateX(300%);
-    transform: translateX(100vw);
-    transition: transform 0.5s ease; /* Add a transition for a smooth effect */
+    transition: transform 0.5s ease, right 0.5s ease; /* Smooth transition */
     z-index: 40;
 }
 
 .menu-active-basket {
-    transform: translateX(62vw);
+    right: 0; /* Slide into view */
 }
 
 .menu_wrapper-basket {
@@ -571,20 +564,11 @@ button {
     height: 100%;
     padding: 7.25vh 2.059025394646534vw 0 3.4317089910775564vw;
     align-items: baseline;
-    width: 490px;
+    width: 100%;
 }
 
-@media (min-width: 1920px) {
-    .menu-active-basket {
-        transform: translateX(1290px); /* Регулюйте значення в залежності від потреб */
-    }
-}
 
-@media (min-width: 2560px) {
-    .menu-active-basket {
-        transform: translateX(1880px); /* Регулюйте значення в залежності від потреб */
-    }
-}
+
 
 
 
