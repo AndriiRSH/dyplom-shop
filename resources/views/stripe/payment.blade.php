@@ -121,61 +121,73 @@
                     <h5 class="card-title mb-0">Введення контактних даних</h5>
                 </div>
                 <div class="card-body">
+{{--                    <form action="{{ route('checkoutprice') }}" method="POST">--}}
+{{--                        @csrf--}}
+{{--                        <div class="form-group">--}}
+{{--                            <label for="name">Ім'я:</label>--}}
+{{--                            <input name="name" type="text" class="form-control" id="name" placeholder="Введіть ваше ім'я">--}}
+{{--                        </div>--}}
+{{--                        <div class="form-group">--}}
+{{--                            <label for="email">Email:</label>--}}
+{{--                            <input name="email" type="email" class="form-control" id="email" placeholder="Введіть ваш email">--}}
+{{--                        </div>--}}
+{{--                        <div class="form-group">--}}
+{{--                            <label for="phone">Телефон:</label>--}}
+{{--                            <input name="phone" type="tel" class="form-control" id="phone" placeholder="Введіть ваш номер телефону">--}}
+{{--                        </div>--}}
+{{--                            <div class="form-group">--}}
+{{--                                <div data-v-2a448dc0="" class="sf-radio form__radio payment-method sf-radio--is-active mt-5" data-qa-node="checkmo" style="display: flex; flex-direction: row; align-items: flex-start;">--}}
+{{--                                    <div data-v-2a448dc0="" class="o-payment__label prelabeled__label" style="margin-right: 10px;">--}}
+{{--                                        Спосіб оплати--}}
+{{--                                    </div>--}}
+{{--                                    <div style="display: flex; flex-direction: column;">--}}
+{{--                                        <label class="sf-radio__container" style="margin-bottom: 10px; display: flex; align-items: center;">--}}
+{{--                                            <input type="radio" name="payment-method" value="checkmo" style="outline: none; margin-right: 5px;">--}}
+{{--                                            <div class="sf-radio__label">Оплата при отриманні замовлення ГОТІВКОЮ</div>--}}
+{{--                                        </label>--}}
+{{--                                        <label class="sf-radio__container" style="display: flex; align-items: center;">--}}
+{{--                                            <input type="radio" name="payment-method" value="card" style="outline: none; margin-right: 5px;">--}}
+{{--                                            <div class="sf-radio__label">Сплатити карткою зараз (VISA/Mastercard)</div>--}}
+{{--                                        </label>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <button type="submit" class="btn btn-dark btn-block">Оформити</button>--}}
+{{--                        </form>--}}
                     <form action="{{ route('checkoutprice') }}" method="POST">
                         @csrf
                         <div class="form-group">
                             <label for="name">Ім'я:</label>
-                            <input name="name" type="text" class="form-control" id="name" placeholder="Введіть ваше ім'я">
+                            <input name="name" type="text" class="form-control" id="name" placeholder="Введіть ваше ім'я" required>
                         </div>
                         <div class="form-group">
                             <label for="email">Email:</label>
-                            <input name="email" type="email" class="form-control" id="email" placeholder="Введіть ваш email">
+                            <input name="email" type="email" class="form-control" id="email" placeholder="Введіть ваш email" required>
                         </div>
                         <div class="form-group">
                             <label for="phone">Телефон:</label>
-                            <input name="phone" type="tel" class="form-control" id="phone" placeholder="Введіть ваш номер телефону">
+                            <input name="phone" type="tel" class="form-control" id="phone" placeholder="Введіть ваш номер телефону" required>
                         </div>
-{{--                        <form action="{{ route('checkoutprice') }}" method="POST">--}}
-{{--                            @csrf--}}
-                            <div class="form-group">
-                                <div data-v-2a448dc0="" class="sf-radio form__radio payment-method sf-radio--is-active mt-5" data-qa-node="checkmo" style="display: flex; flex-direction: row; align-items: flex-start;">
-                                    <div data-v-2a448dc0="" class="o-payment__label prelabeled__label" style="margin-right: 10px;">
-                                        Спосіб оплати
-                                    </div>
-                                    <div style="display: flex; flex-direction: column;">
-                                        <label class="sf-radio__container" style="margin-bottom: 10px; display: flex; align-items: center;">
-                                            <input type="radio" name="payment-method" value="checkmo" style="outline: none; margin-right: 5px;">
-                                            <div class="sf-radio__label">Оплата при отриманні замовлення ГОТІВКОЮ</div>
-                                        </label>
-                                        <label class="sf-radio__container" style="display: flex; align-items: center;">
-                                            <input type="radio" name="payment-method" value="card" style="outline: none; margin-right: 5px;">
-                                            <div class="sf-radio__label">Сплатити карткою зараз (VISA/Mastercard)</div>
-                                        </label>
-                                    </div>
+                        <div class="form-group">
+                            <div data-v-2a448dc0="" class="sf-radio form__radio payment-method sf-radio--is-active mt-5" data-qa-node="checkmo" style="display: flex; flex-direction: row; align-items: flex-start;">
+                                <div data-v-2a448dc0="" class="o-payment__label prelabeled__label" style="margin-right: 10px;">
+                                    Спосіб оплати
+                                </div>
+                                <div style="display: flex; flex-direction: column;">
+                                    <label class="sf-radio__container" style="margin-bottom: 10px; display: flex; align-items: center;">
+                                        <input type="radio" name="payment-method" value="checkmo" style="outline: none; margin-right: 5px;">
+                                        <div class="sf-radio__label">Оплата при отриманні замовлення ГОТІВКОЮ</div>
+                                    </label>
+                                    <label class="sf-radio__container" style="display: flex; align-items: center;">
+                                        <input type="radio" name="payment-method" value="card" style="outline: none; margin-right: 5px;">
+                                        <div class="sf-radio__label">Сплатити карткою зараз (VISA/Mastercard)</div>
+                                    </label>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-dark btn-block">Оформити</button>
-                        </form>
+                        </div>
+                        <button type="submit" class="btn btn-dark btn-block">Оформити</button>
+                    </form>
 
-                        {{--                        <div class="form-group">--}}
-{{--                            <div data-v-2a448dc0="" class="sf-radio form__radio payment-method sf-radio--is-active mt-5" data-qa-node="checkmo" style="display: flex; flex-direction: row; align-items: flex-start;">--}}
-{{--                                <div data-v-2a448dc0="" class="o-payment__label prelabeled__label" style="margin-right: 10px;">--}}
-{{--                                    Спосіб оплати--}}
-{{--                                </div>--}}
-{{--                                <div style="display: flex; flex-direction: column;">--}}
-{{--                                    <label class="sf-radio__container" style="margin-bottom: 10px; display: flex; align-items: center;">--}}
-{{--                                        <input type="radio" name="payment-method" value="checkmo" style="outline: none; margin-right: 5px;">--}}
-{{--                                        <div class="sf-radio__label">Оплата при отриманні замовлення ГОТІВКОЮ</div>--}}
-{{--                                    </label>--}}
-{{--                                    <label class="sf-radio__container" style="display: flex; align-items: center;">--}}
-{{--                                        <input type="radio" name="payment-method" value="checkmo" style="outline: none; margin-right: 5px;">--}}
-{{--                                        <div class="sf-radio__label">Сплатити карткою зараз (VISA/Mastercard)</div>--}}
-{{--                                    </label>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <button type="submit" class="btn btn-primary btn-block">Надіслати</button>--}}
-{{--                    </form>--}}
                 </div>
             </div>
         </div>
