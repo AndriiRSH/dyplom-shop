@@ -22,7 +22,7 @@
                             <div class="menu_wrap" style="position: absolute; bottom: 20px;">
                                 <a href="" class="fa-brands fa-instagram fa-2xl pl-3"></a>
                                 <a href="" class="fa-brands fa-facebook fa-2xl p-3"></a>
-                                <a href="" class="fa-brands fa-telegram fa-2xl"></a>
+<!--                                <a href="" class="fa-brands fa-telegram fa-2xl"></a>-->
                             </div>
                         </div>
 
