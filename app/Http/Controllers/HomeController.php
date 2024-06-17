@@ -168,7 +168,7 @@ class HomeController extends Controller
             'success_url' => route('success'),
             'cancel_url'  => route('checkout'),
         ]);
-        return redirect()->away($session->url);
+        return redirect()->route('finalorder');
     }
 
     public function success()
